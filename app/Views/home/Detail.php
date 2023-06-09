@@ -34,45 +34,39 @@
                             <h5 class="card-title">Tahap Perawatan</h5>
                             <hr style="border-color: black;">
                             <ol>
-                                <li style="text-align:justify">Pembersihan kulit (Untuk menghilangkan kotoran, minyak berlebih, dan sel kulit mati yang dapat menyumbat pori-pori.)</li>
-                                <li style="text-align:justify">Steaming (Untuk membuka pori-pori dan memudahkan pengeluaran kotoran dan minyak yang tersumbat.)</li>
-                                <li style="text-align:justify">Pemijatan (Kulit akan dipijat dengan lembut untuk memperbaiki sirkulasi darah dan meningkatkan elastisitas kulit.)</li>
-                                <li style="text-align:justify">Peeling (Mengangkat sel-sel kulit mati yang menumpuk pada permukaan kulit. )</li>
-                                <li style="text-align:justify">Ekstraksi (Untuk menghilangkan komedo dan jerawat yang sudah matang.)</li>
-                                <li style="text-align:justify">Masker (Setelah ekstraksi, kulit akan diberi masker khusus yang dirancang untuk mengatasi masalah jerawat. )</li>
-                                <li style="text-align:justify">Pelembap (Setelah masker diangkat, kulit akan diberi pelembap untuk menjaga kelembaban kulit dan mencegah kulit kering.)</li>
+                                <?php foreach (json_decode($detail->tahap_treatment) as $tahap) { ?>
+                                    <li style="text-align:justify"><?= $tahap ?></li>
+                                <?php } ?>
                             </ol>
                         </div>
 
                         <div class="col-8 col-sm-6">
                             <h5 class="card-title">Durasi Perawatan</h5>
                             <hr style="border-color: black;">
-                            <p class="card-text">60 Menit</p>
+                            <p class="card-text"><?= $detail->durasi_treatment ?> Menit</p>
                         </div>
                         <div class="col-4 col-sm-6">
                             <h5 class="card-title">Manfaat Perawatan</h5>
                             <hr style="border-color: black;">
                             <ul>
-                                <li style="text-align:justify">Membersihkan kulit wajah</li>
-                                <li style="text-align:justify">Menghilangkan jerawat</li>
-                                <li style="text-align:justify">Mencerahkan kulit wajah</li>
-                                <li style="text-align:justify">Meremajakan kulit</li>
-                                <li style="text-align:justify">Mencegah penuaan dini</li>
+                                <?php foreach (json_decode($detail->manfaat_treatment) as $manfaat) { ?>
+                                    <li style="text-align:justify"><?= $manfaat ?></li>
+                                <?php } ?>
                             </ul>
                         </div>
 
                         <div class="col-8 col-sm-6">
                             <h5 class="card-title">Jangka Pengulangan Perawatan</h5>
                             <hr style="border-color: black;">
-                            <p>1 bulan sekali</p>
+                            <p><?= $detail->jangka_ulang_treatment ?></p>
                         </div>
                         <div class="col-4 col-sm-6">
                             <h5 class="card-title">Perhatian</h5>
                             <hr style="border-color: black;">
                             <ul>
-                                <li style="text-align:justify">Sensasi terbakar atau kesemutan pada kulit wajah saat proses perawatan berlangsung</li>
-                                <li style="text-align:justify">Setelah melakukan perawatan kulit wajah akan menjadi kemerahan</li>
-                                <li style="text-align:justify">Efek saat proses dan setelah proses perawatan setiap individu berbeda-beda tergantung kondisi kulit wajah individu dan juga produk atau teknik yang digunakan</li>
+                                <?php foreach (json_decode($detail->perhatian) as $perhatian) { ?>
+                                    <li style="text-align:justify"><?= $perhatian ?></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -80,9 +74,12 @@
             </div>
             <div class="row detail-padding-price d-flex justify-content-center">
                 <div class="col-md-8 my-5 text-center">
-                    <br><button type="button" class="btn btn-secondary" disabled>Rp. 150.000</button>
-                    <?php if (!empty(session()->logged_in)) { ?>
-                        <a href="<?= base_url('Reservasi/RChemicalPeeling') ?>" class="btn btn-primary">Reservasi</a>
+                    <br><button type="button" class="btn btn-secondary" disabled>Rp. <?= number_format($detail->harga_treatment, 0, '', '.') ?></button>
+                    <?php if (!empty(session()->logged_in)) {
+                        $detail_url = explode('(', $detail->nama_treatment)[0];
+                        $detail_url = str_replace(' ', '-', trim($detail_url));
+                    ?>
+                        <a href="<?= base_url('/home/Reservasi') . '/' . $detail_url ?>" class="btn btn-primary">Reservasi</a>
                     <?php } else { ?>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

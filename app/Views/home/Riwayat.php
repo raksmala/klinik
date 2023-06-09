@@ -24,33 +24,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Oktavia</td>
-                    <td>Facial Anti Acne</td>
-                    <td>08/06/2023</td>
-                    <td>10.00 - 12.00 WIB</td>
-                    <td>Rp. 55.000</td>
-                    <td>LUNAS</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Oktavia</td>
-                    <td>Chemical Peeling</td>
-                    <td>08/07/2023</td>
-                    <td>10.00 - 12.00 WIB</td>
-                    <td>Rp. 150.000</td>
-                    <td>PROSES</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Oktavia</td>
-                    <td>Facial Anti Acne</td>
-                    <td>08/07/2023</td>
-                    <td>10.00 - 12.00 WIB</td>
-                    <td>Rp. 55.000</td>
-                    <td>DIBATALKAN</td>
-                </tr>
+                <?php foreach($reservasi as $key => $res) { ?>
+                    <tr>
+                        <th scope="row"><?= ++$key ?></th>
+                        <td><?= $res->username ?></td>
+                        <td><?= $res->nama_treatment ?></td>
+                        <td><?= $res->tgl_reservasi ?></td>
+                        <td><?= $res->sesi_reservasi ?></td>
+                        <td>Rp. <?= number_format($res->total, 0, '', '.') ?></td>
+                        <td><?= $res->status_pembayaran ?></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     

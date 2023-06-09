@@ -11,7 +11,7 @@ class ModelUser extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $protectFields = true;
-    protected $allowedFields = ['nama_lengkap', 'username', 'alamat', 'no_telepon', 'level_user'];
+    protected $allowedFields = ['nama_lengkap', 'username', 'alamat', 'nomor_telepon', 'password', 'level_user'];
 
     public function login($username, $password)
     {

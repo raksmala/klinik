@@ -25,8 +25,8 @@
             <input type="text" class="form-control" name="username" id="username" placeholder="username" autofocus required>
           </div>
           <div class="form-group">
-            <label for="nomor_telepon">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="password" autofocus required>
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="password" minlength="8" autofocus requiredoninvalid="this.setCustomValidity('Password Minimal 8 Karakter')" oninput="this.setCustomValidity('Password Minimal 8 Karakter')" onchange="this.setCustomValidity('')">
           </div>
           <div class="form-group">
             <label for="alamat">Alamat</label>

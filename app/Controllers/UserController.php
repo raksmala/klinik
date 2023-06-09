@@ -25,12 +25,13 @@ class UserController extends Controller
         $data = [
             'nama_lengkap' => $this->request->getVar('nama_lengkap'),
             'username' => $this->request->getVar('username'),
+            'password' => md5($this->request->getVar('password')),
             'alamat' => $this->request->getVar('alamat'),
             'nomor_telepon' => $this->request->getVar('nomor_telepon'),
             'level_user' => $this->request->getVar('level_user')
         ];
         $model->insert($data);
-        return redirect()->to(base_url('user'));
+        return redirect()->to(base_url('/Admin/User'));
     }
 
     public function edit($id)
@@ -55,13 +56,13 @@ class UserController extends Controller
 
         $model->save($user);
 
-        return redirect()->to(base_url('user'));
+        return redirect()->to(base_url('/Admin/User'));
     }
 
     public function delete($id)
     {
         $model = new UserModel();
         $model->delete($id);
-        return redirect()->to(base_url('user'));
+        return redirect()->to(base_url('/Admin/User'));
     }
 }

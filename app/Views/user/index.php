@@ -31,9 +31,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($users as $user) : ?>
+                                            <?php foreach ($users as $key => $user) : ?>
                                                 <tr>
-                                                    <td><?= $user['user_id'] ?></td>
+                                                    <td><?= ++$key ?>.</td>
                                                     <td><?= $user['nama_lengkap'] ?></td>
                                                     <td><?= $user['username'] ?></td>
                                                     <td><?= $user['alamat'] ?></td>

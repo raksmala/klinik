@@ -23,7 +23,6 @@
                             <!-- <a href="/Detail/FacialBasic" class="card-link">Detail</a><br> -->
                             <br><button type="button" class="btn btn-secondary" disabled>Rp. <?= number_format($treatment->harga_treatment, 0, '', '.') ?></button>
                             <?php
-                            // from nama_treatment but remove ()
                                 $detail_url = explode('(', $treatment->nama_treatment)[0];
                                 $detail_url = str_replace(' ', '-', trim($detail_url));
                             ?>
