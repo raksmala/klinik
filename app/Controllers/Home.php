@@ -17,32 +17,32 @@ class Home extends BaseController
 
     public function index()
     {
-        $data['jenis_treatment'] = $this->jenisTreatment;
-        echo view('layout/header', $data);
+        $dataHeader['jenis_treatment'] = $this->jenisTreatment;
+        echo view('layout/header', $dataHeader);
         echo view('Beranda');
         echo view('layout/footer');
     }
 
     public function klinik()
     {
-        $data['jenis_treatment'] = $this->jenisTreatment;
-        echo view('layout/header', $data);
+        $dataHeader['jenis_treatment'] = $this->jenisTreatment;
+        echo view('layout/header', $dataHeader);
         echo view('home/klinik');
         echo view('layout/footer');
     }
 
     public function BeforeAfter()
     {
-        $data['jenis_treatment'] = $this->jenisTreatment;
-        echo view('layout/header', $data);
+        $dataHeader['jenis_treatment'] = $this->jenisTreatment;
+        echo view('layout/header', $dataHeader);
         echo view('home/BeforeAfter');
         echo view('layout/footer');
     }
 
     public function Riwayat()
     {
-        $data['jenis_treatment'] = $this->jenisTreatment;
-        echo view('layout/header', $data);
+        $dataHeader['jenis_treatment'] = $this->jenisTreatment;
+        echo view('layout/header', $dataHeader);
         echo view('home/Riwayat');
         echo view('layout/footer');
     }
@@ -50,7 +50,8 @@ class Home extends BaseController
     public function Treatment($jenis)
     {
         $data['treatments'] = $this->treatmentModel->getTreatment($jenis);
-        echo view('layout/header');
+        $dataHeader['jenis_treatment'] = $this->jenisTreatment;
+        echo view('layout/header', $dataHeader);
         echo view('home/Treatment', $data);
         echo view('layout/footer');
     }
@@ -58,7 +59,8 @@ class Home extends BaseController
     public function Detail($treatment)
     {
         $data['detail'] = $this->treatmentModel->getDetail($treatment);
-        echo view('layout/header');
+        $dataHeader['jenis_treatment'] = $this->jenisTreatment;
+        echo view('layout/header', $dataHeader);
         echo view('home/Detail', $data);
         echo view('layout/footer');
     }

@@ -26,9 +26,9 @@
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="col-8 col-sm-6">
-                            <h5 class="card-title">CHEMICAL PEELING</h5>
+                            <h5 class="card-title"><?= $detail->nama_treatment ?></h5>
                             <hr style="border-color: black;">
-                            <p class="card-text">Prosedur facial yang cocok untuk semua jenis kulit dengan tindakan untuk memicu eksfoliasi atau pengelupasan sel-sel kulit mati serta kotoran di kulit menggunakan bahan kimia khusus yang dioleskan di kulit.</p>
+                            <p class="card-text"><?= $detail->desc_treatment ?></p>
                         </div>
                         <div class="col-4 col-sm-6">
                             <h5 class="card-title">Tahap Perawatan</h5>
