@@ -33,8 +33,8 @@
                                                     <td><?= $treatment->jenis_treatment ?></td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                                            <button class="btn btn-primary" type="button">Edit</button>
-                                                            <button class="btn btn-danger" type="button">Hapus</button>
+                                                            <a href="<?= base_url('treatment/edit/' . $treatment->id_treatment) ?>" class="btn btn-warning btn-sm ">Edit</a>
+                                                            <a href="<?= base_url('treatment/delete/' . $treatment->id_treatment) ?>" class="btn btn-danger btn-sm delete" onclick="return confirm('Apakah anda yakin ingin menghapus treatment ini?')">Hapus</a>
                                                         </div>
                                                     </td>
                                                 </tr>

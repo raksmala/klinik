@@ -54,6 +54,7 @@ $routes->get('Admin/DAdmin', 'Home::DAdmin');
 $routes->get('/Admin/Home', 'Home::Home');
 $routes->get('/Admin/Laporan', 'Home::Laporan');
 $routes->add('daterangepicker/(:any)', 'Home::library/$1');
+
 // CRUD USER
 $routes->get('/user/edit', 'Home::Home');
 $routes->match(['get', 'post'], 'user/edit/(:num)', 'UserController::edit/$1');
@@ -68,6 +69,9 @@ $routes->post('user/update/(:num)', 'UserController::update/$1');
 // CRUD TREATMENT
 $routes->get('adminTreatment/create', 'Treatment::create');
 $routes->post('adminTreatment/simpan', 'Treatment::simpan');
+$routes->get('treatment/delete/(:num)', 'Treatment::hapus/$1');
+$routes->get('treatment/edit/(:num)', 'Treatment::edit/$1');
+$routes->post('treatment/update/(:num)', 'Treatment::update/$1');
 // Export File Excel
 $routes->get('Admin/exportTreatment', 'Treatment::export');
 $routes->get('Admin/laporan_pdf', 'Treatment::pdf');

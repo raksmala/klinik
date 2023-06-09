@@ -1,6 +1,6 @@
-<?php $this->extend('Admin/Master');?>
+<?php $this->extend('Admin/Master'); ?>
 
-<?php $this->section('content');?>
+<?php $this->section('content'); ?>
 <!-- Modal -->
 <div class="main-panel">
     <div class="content-wrapper">
@@ -15,7 +15,7 @@
                             <a href="siswa/exportpdf" class="btn btn-info my-3" target="_blank">Download File Pdf</a> -->
                             <div class="row">
                                 <div class="col-12">
-                                    <a href="<?= base_url('user/create')?>" class="bi bi-plus blue-color float-right"></a>
+                                    <a href="<?= base_url('user/create') ?>" class="bi bi-plus blue-color float-right"></a>
                                 </div>
                                 <div class="table-responsive">
                                     <table id="tablesiswa" class="display expandable-table" style="width:100%">
@@ -41,8 +41,8 @@
                                                     <td><?= $user['level_user'] ?></td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="<?=base_url('user/edit/'.$user['user_id']) ?>" class="btn btn-warning btn-sm ">Edit</a>
-                                                           <a href="<?=base_url('user/delete/'.$user['user_id']) ?>" class="btn btn-danger btn-sm delete" onclick="return confirm('Apakah anda yakin ingin menghapus user ini?')">Hapus</a>
+                                                            <a href="<?= base_url('user/edit/' . $user['user_id']) ?>" class="btn btn-warning btn-sm ">Edit</a>
+                                                            <a href="<?= base_url('user/delete/' . $user['user_id']) ?>" class="btn btn-danger btn-sm delete" onclick="return confirm('Apakah anda yakin ingin menghapus user ini?')">Hapus</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -90,4 +90,4 @@
     </script> -->
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->
-<?php $this->endSection();?>
+    <?php $this->endSection(); ?>

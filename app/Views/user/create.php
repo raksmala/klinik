@@ -46,6 +46,7 @@
             </div>
           </div>
 
+          <a href="<?= base_url('Admin/User') ?>" class="btn btn-danger">Cancel</a>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>

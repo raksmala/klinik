@@ -147,7 +147,7 @@
                                 <input class="form-control" type="text" placeholder="Rp. <?= number_format($detail->harga_treatment, 0, '', '.') ?>" value="Rp. <?= number_format($detail->harga_treatment, 0, '', '.') ?>" name="total" aria-label="Disabled input example" readonly>
                             </div>
                         </div>
-                        <a href="/Treatment/Facial" class="btn btn-secondary">Batal</a>
+                        <a href="/home/Treatment/Facial" class="btn btn-secondary">Batal</a>
                         <button type="submit" class="btn btn-primary">Kirim Reservasi</button>
                     </div>
                 </form>

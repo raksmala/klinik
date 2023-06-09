@@ -116,6 +116,7 @@
             $('#tablesiswa').DataTable();
         });
     </script>
+    <?= $this->renderSection('script') ?>
 </body>
 
 </html>

@@ -11,66 +11,96 @@ class Treatment extends Controller
     protected $table = "treatment";
     public function __construct()
     {
-        $this->mtreatment = new TreatmentModel();
+        $this->treatmentModel = new TreatmentModel();
     }
 
     public function index()
     {
-        $getdata = $this->mtreatment->getdata();
+        $getdata = $this->treatmentModel->getdata();
         $data = array(
             'dataTreatment' => $getdata,
-
         );
 
-        return view('Admin/Treatment', $data);
+        return view('adminTreatment/index', $data);
     }
-
-    function simpan()
-    {
-        
-        $nama_treatment = $this->request->getPost("nama_treatment");
-        $jenis_treatment = $this->request->getPost("jenis_treatment");
-        
-    
-        $data = [
-            'nama_treatment' => $nama_treatment,
-            'jenis_treatment' => $jenis_treatment,
-        ];
-        return redirect()->to(base_url('/Admin/Treatment'));
-
-        // try {
-        //     $simpan = $this->mtreatment->simpanData($this->table,$data);
-        //     if($simpan){
-        //         echo '<script>alert("Data berhasil disimpan"); window.location('.base_url('/adminTreatment/create').');</script>';
-        //     }else{
-        //         echo '<script>alert("Data gagal disimpan"); window.location('.base_url('/adminTreatment/create').');</script>';
-        //     }
-        //     }
-        // }
-    }
-
-
-    // public function export()
-    // {
-    //     echo "export data ";
-    // }
 
     public function create()
     {
         echo view('adminTreatment/create');
     }
 
-    // public function pdf()
-    // {
-    //     $this->load->library('dompdf_gen');
-    //     $data['dataTreatment'] = $this->mtreatment->tampil_data('treatment')->result();
-    //     $this->load->view('laporan_pdf', $data);
-    //     $paper_size = 'A4';
-    //     $orientation = 'landscape';
-    //     $html = $this->output->get_output();
-    //     $this->dompdf->set_paper($paper_size, $orientation);
-    //     $this->dompdf->load_html($html);
-    //     $this->dompdf->render();
-    //     $this->dompdf->stream("laporan_treatment.pdf", array('Attachment' => 0));
-    // }
+    function simpan()
+    {
+        $sesi_treatment = [
+            '08.00 - 10.00' => $this->request->getPost('sesi_treatment_1'),
+            '10.00 - 12.00' => $this->request->getPost('sesi_treatment_2'),
+            '12.45 - 15.00' => $this->request->getPost('sesi_treatment_3'),
+            '15.00 - 17.00' => $this->request->getPost('sesi_treatment_4'),
+        ];
+
+        $data = [
+            'nama_treatment' => $this->request->getPost('nama_treatment'),
+            'jenis_treatment' => $this->request->getPost('jenis_treatment'),
+            'desc_treatment' => $this->request->getPost('desc_treatment'),
+            'harga_treatment' => $this->request->getPost('harga_treatment'),
+            'durasi_treatment' => $this->request->getPost('durasi_treatment'),
+            'jangka_ulang_treatment' => $this->request->getPost('jangka_ulang_treatment'),
+            'tahap_treatment' => json_encode($this->request->getPost('tahap_treatment')),
+            'manfaat_treatment' => json_encode($this->request->getPost('manfaat_treatment')),
+            'perhatian' => json_encode($this->request->getPost('perhatian')),
+            'sesi_treatment' => json_encode($sesi_treatment),
+        ];
+
+        $this->treatmentModel->simpanData('treatment', $data);
+
+        return redirect()->to(base_url('/Admin/Treatment'));
+    }
+
+    public function edit($id)
+    {
+        $data['dataTreatment'] = $this->treatmentModel->find($id);
+
+        return view('adminTreatment/edit', $data);
+    }
+
+    public function update($id)
+    {
+        $treatment = $this->treatmentModel->find($id);
+
+        $sesi_treatment = [
+            '08.00 - 10.00' => $this->request->getPost('sesi_treatment_1'),
+            '10.00 - 12.00' => $this->request->getPost('sesi_treatment_2'),
+            '12.45 - 15.00' => $this->request->getPost('sesi_treatment_3'),
+            '15.00 - 17.00' => $this->request->getPost('sesi_treatment_4'),
+        ];
+
+        $treatment = [
+            'nama_treatment' => $this->request->getPost('nama_treatment'),
+            'jenis_treatment' => $this->request->getPost('jenis_treatment'),
+            'desc_treatment' => $this->request->getPost('desc_treatment'),
+            'harga_treatment' => $this->request->getPost('harga_treatment'),
+            'durasi_treatment' => $this->request->getPost('durasi_treatment'),
+            'jangka_ulang_treatment' => $this->request->getPost('jangka_ulang_treatment'),
+            'tahap_treatment' => json_encode($this->request->getPost('tahap_treatment')),
+            'manfaat_treatment' => json_encode($this->request->getPost('manfaat_treatment')),
+            'perhatian' => json_encode($this->request->getPost('perhatian')),
+            'sesi_treatment' => json_encode($sesi_treatment),
+        ];
+        
+        $this->treatmentModel->updateTreatment($id, $treatment);
+
+        return redirect()->to(base_url('/Admin/Treatment'));
+    }
+
+    public function hapus($id)
+    {
+        $now = date('Y-m-d H:i:s');
+        $data = [
+            'is_deleted' => $now,
+        ];
+
+        $this->treatmentModel->updateTreatment($id, $data);
+
+        return redirect()->to(base_url('/Admin/Treatment'));
+    }
 }
