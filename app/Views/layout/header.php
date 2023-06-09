@@ -52,16 +52,15 @@
                             Treatment
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/Treatment/Facial">Facial</a></li>
-                            <li><a class="dropdown-item" href="/Treatment/Chemical">Chemical Peeling</a></li>
-                            <li><a class="dropdown-item" href="/Treatment/Laser">Laser</a></li>
-                            <li><a class="dropdown-item" href="/Treatment/Glowing">Glowing Glass Skin</a></li>
-                            <li><a class="dropdown-item" href="/Treatment/Badan">Body Treatment</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/Treatment/Rambut">Hair Treatment</a></li>
-                            <li><a class="dropdown-item" href="/Treatment/Lainnya">Other Treatment</a></li>
+                            <?php
+                                if(isset($jenis_treatment)) {
+                                    foreach($jenis_treatment as $row) {
+                                        // replace space with dash (-)
+                                        $url = str_replace(' ', '-', $row);
+                                        echo '<li><a class="dropdown-item" href="/home/Treatment/'.$url.'">'.$row.'</a></li>';
+                                    }
+                                }
+                            ?>
                         </ul>
                     </li>
                     <li class="nav-item">

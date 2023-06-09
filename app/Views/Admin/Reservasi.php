@@ -28,6 +28,7 @@
                                                 <th>Treatment</th>
                                                 <th>Total Pembayaran</th>
                                                 <th>Status Pembayaran</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -39,7 +40,7 @@
                                                     <td><?= $reservasi->nama_lengkap ?></td>
                                                     <td><?= $reservasi->nomor_telepon ?></td>
                                                     <td><?= $reservasi->alamat ?></td>
-                                                    <td><?= $reservasi->treatment ?></td>
+                                                    <td><?= $reservasi->nama_treatment ?></td>
                                                     <td><?= $reservasi->total ?></td>
                                                     <td><?= $reservasi->status_pembayaran ?></td>
                                                     <td>

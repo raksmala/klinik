@@ -20,6 +20,20 @@
     <link rel="stylesheet" href="<?= base_url() ?>/template/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="<?= base_url() ?>/template/images/favicon.png" />
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="<?= base_url() ?>/fontawesome/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <!-- <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css"> -->
+    <!-- Theme style -->
+    <!-- <link rel="stylesheet" href="dist/css/adminlte.min.css"> -->
+    <link rel="shortcut icon" href="{{ asset ('admin/images/favicon.png') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body>
@@ -35,18 +49,13 @@
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
                 </button>
-                
+
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="/img/profil.jpg" alt="profile" />
+                        <a class="dropdown-item" href="<?= base_url('logout') ?>">
+                            <i class="ti-power-off text-primary"></i>
+                            Logout
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="/layout/login">
-                                <i class="ti-power-off text-primary"></i>
-                                Logout
-                            </a>
-                        </div>
                     </li>
                 </ul>
                 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -66,7 +75,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user">
+                        <a class="nav-link" href="/Admin/User">
                             <i class="icon-head menu-icon"></i>
                             <span class="menu-title">Data User</span>
                         </a>
@@ -127,7 +136,7 @@
                                         <div class="card-body">
                                             <p class="mb-4">Data User</p>
                                             <p class="fs-30 mb-2">60</p>
-                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +145,7 @@
                                         <div class="card-body">
                                             <p class="mb-4">Data Treatment</p>
                                             <p class="fs-30 mb-2">40</p>
-                                          
+
                                         </div>
                                     </div>
                                 </div>
@@ -147,7 +156,7 @@
                                         <div class="card-body">
                                             <p class="mb-4">Data Reservasi</p>
                                             <p class="fs-30 mb-2">10</p>
-                                           
+
                                         </div>
                                     </div>
                                 </div>

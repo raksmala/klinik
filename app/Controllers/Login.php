@@ -60,7 +60,12 @@ class Login extends BaseController
                         session()->set('nama_lengkap', ucfirst($user['nama_lengkap']));
                         session()->set('alamat', ucfirst($user['alamat']));
                         session()->set('nomor_telepon', ucfirst($user['nomor_telepon']));
-                        return redirect()->to(base_url(''));
+                        
+                        $redirect = base_url('');
+                        if($user['level_user'] == 'Admin') {
+                            $redirect = base_url('Admin/Home');
+                        }
+                        return redirect()->to($redirect);
                     }
                 }
             } else if ($Admin) {

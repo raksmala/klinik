@@ -77,14 +77,14 @@
 
 
             <div class="col-6">
-                <form>
+                <form method="post" action="<?= base_url('Reservasi/simpan') ?>">
                     <div class="flex flex-col p-5 bg-white shadow-lg relative max-w-[592px]">
                         <h2 class="text-xl md:text-4xl text-gray-800 mb-4">Reservasi</h2>
                         <hr style="border-color: black;">
                         <div class="flex mb-3">
                             <div class="form-floating mb-3">
                                 <h6>Pilih Tanggal</h6>
-                                <input type="date" id="tanggal" name="tanggal" min="<?= date('Y-m-d', strtotime('+0 days')) ?>" max="<?= date('Y-m-d', strtotime('+10 days')) ?>">
+                                <input type="date" id="tanggal" name="tanggal" min="<?= date('Y-m-d', strtotime('+0 days')) ?>" max="<?= date('Y-m-d', strtotime('+10 days')) ?>" required>
                             </div>
                             <h6>Sesi Treatment</h6>
                             <p><small>(Pilih Salah Satu Sesi Treatment yang Masih Tersedia)</small></p>
@@ -92,14 +92,14 @@
                                 <div class="row mx-6 my-3">
                                     <div class="col-6 col-sm-5">
                                         <label class="custom-checkbox">
-                                            <input class="custom-checkbox-input" type="checkbox" name="jam" value="jam1">
+                                            <input class="custom-checkbox-input js-checkbox" type="checkbox" name="jam" value="08.00 - 10.00" data-max="3">
                                             <span class="custom-checkbox-label">08:00 - 10:00</span>
                                         </label>
 
                                     </div>
                                     <div class="col-6 col-sm-5">
                                         <label class="custom-checkbox">
-                                            <input class="custom-checkbox-input" type="checkbox" name="jam" value="jam1">
+                                            <input class="custom-checkbox-input js-checkbox" type="checkbox" name="jam" value="10.00 - 12.00" data-max="3">
                                             <span class="custom-checkbox-label">10:00 - 12:00</span>
                                         </label>
                                     </div>
@@ -109,13 +109,13 @@
 
                                     <div class="col-6 col-sm-5">
                                         <label class="custom-checkbox">
-                                            <input class="custom-checkbox-input" type="checkbox" name="jam" value="jam1">
+                                            <input class="custom-checkbox-input js-checkbox" type="checkbox" name="jam" value="12.45 - 15.00" data-max="3">
                                             <span class="custom-checkbox-label">12:45 - 15:00</span>
                                         </label>
                                     </div>
                                     <div class="col-6 col-sm-5">
                                         <label class="custom-checkbox">
-                                            <input class="custom-checkbox-input" type="checkbox" name="jam" value="jam1">
+                                            <input class="custom-checkbox-input js-checkbox" type="checkbox" name="jam" value="15.00 - 17.00" data-max="3">
                                             <span class="custom-checkbox-label">15:00 - 17:00</span>
                                         </label>
                                     </div>
@@ -123,56 +123,66 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nama Lengkap</label>
-                                <input class="form-control" type="text" placeholder="<?= session()->get('nama_lengkap') ?>" aria-label="Disabled input example" disabled>
+                                <input type="hidden" name="user_id" value="<?= session()->get('user_id') ?>">
+                                <!-- input hidden of current path without base url -->
+                                <input type="hidden" name="return_url" value="<?= $_SERVER['REQUEST_URI'] ?>">
+                                <input class="form-control" type="text" placeholder="<?= session()->get('nama_lengkap') ?>" value="<?= session()->get('nama_lengkap') ?>" name="nama_lengkap" aria-label="Disabled input example" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Alamat</label>
-                                <input class="form-control" type="text" placeholder="<?= session()->get('alamat') ?>" aria-label="Disabled input example" disabled>
+                                <input class="form-control" type="text" placeholder="<?= session()->get('alamat') ?>" value="<?= session()->get('alamat') ?>" name="alamat" aria-label="Disabled input example" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nomor Telepon</label>
-                                <input class="form-control" type="text" placeholder="<?= session()->get('nomor_telepon') ?>" aria-label="Disabled input example" disabled>
+                                <input class="form-control" type="text" placeholder="<?= session()->get('nomor_telepon') ?>" value="<?= session()->get('nomor_telepon') ?>" name="nomor_telepon" aria-label="Disabled input example" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Treatment</label>
-                                <input class="form-control" type="text" placeholder="Facial Basic" aria-label="Disabled input example" disabled>
+                                <input class="form-control" type="text" placeholder="Facial Basic" value="Facial Basic" id="nama_treatment" name="nama_treatment" aria-label="Disabled input example" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Total Yang Harus Dibayar</label>
-                                <input class="form-control" type="text" placeholder="Rp 55.000" aria-label="Disabled input example" disabled>
+                                <input class="form-control" type="text" placeholder="Rp 55.000" value="Rp 55.000" name="total" aria-label="Disabled input example" readonly>
                             </div>
                         </div>
                         <a href="/Treatment/Facial" class="btn btn-secondary">Batal</a>
-                        <a href="#" class="btn btn-primary">Kirim Reservasi</a>
-
+                        <button type="submit" class="btn btn-primary">Kirim Reservasi</button>
                     </div>
                 </form>
             </div>
         </div>
     </div><br>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // Mengambil semua checkbox dengan nama 'jam'
-    const checkboxes = document.querySelectorAll('input[id="jam1"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('click', function() {
-            // Memeriksa apakah checkbox saat ini sudah dipilih
-            if (this.checked) {
-                // Jika sudah dipilih, menonaktifkan checkbox lainnya
-                checkboxes.forEach(otherCheckbox => {
-                    if (otherCheckbox !== this) {
-                        otherCheckbox.disabled = true;
-                        otherCheckbox.closest('.custom-checkbox').querySelector(
-                            '.custom-checkbox-label').classList.add('disabled');
+    $('#tanggal').on('change', function() {
+        const tanggal = $(this).val();
+        const treatment = $('#nama_treatment').val();
+        $.ajax({
+            url: "<?= base_url('Reservasi/cek-sesi') ?>",
+            type: "POST",
+            data: {
+                tanggal: tanggal,
+                treatment: treatment,
+            },
+            dataType: "JSON",
+            success: function(data) {
+                const groupedData = data.reduce((acc, curr) => {
+                    const sesi = curr.sesi_reservasi;
+                    acc[sesi] = (acc[sesi] || 0) + 1;
+                    return acc;
+                }, {});
+
+                $('.js-checkbox').each(function() {
+                    const sesi = $(this).val();
+
+                    if(groupedData[sesi] === parseInt($(this).data('max'))) {
+                        $(this).prop('disabled', true);
+                        $(this).next().addClass('disabled');
+                    } else {
+                        $(this).prop('disabled', false);
+                        $(this).next().removeClass('disabled');
                     }
-                });
-            } else {
-                // Jika tidak dipilih, mengaktifkan kembali checkbox lainnya
-                checkboxes.forEach(otherCheckbox => {
-                    otherCheckbox.disabled = false;
-                    otherCheckbox.closest('.custom-checkbox').querySelector(
-                        '.custom-checkbox-label').classList.remove('disabled');
                 });
             }
         });

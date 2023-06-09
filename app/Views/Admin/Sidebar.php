@@ -9,7 +9,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user">
+                <a class="nav-link" href="/Admin/User">
                     <i class="icon-head menu-icon"></i>
                     <span class="menu-title">Data User</span>
                 </a>

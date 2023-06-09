@@ -41,20 +41,23 @@ class UserController extends Controller
         
     }
 
-    public function update()
+    public function update($id)
     {
         $model = new UserModel();
-        $id = $this->request->getVar('user_id');
-        $data = [
-            'nama_lengkap' => $this->request->getVar('nama_lengkap'),
-            'username' => $this->request->getVar('username'),
-            'alamat' => $this->request->getVar('alamat'),
-            'nomor_telepon' => $this->request->getVar('nomor_telepon'),
-            'level_user' => $this->request->getVar('level_user')
-        ];
-        $model->update($id, $data);
+        
+        $user = $model->find($id);
+
+        $user['nama_lengkap'] = $this->request->getVar('nama_lengkap');
+        $user['username'] = $this->request->getVar('username');
+        $user['alamat'] = $this->request->getVar('alamat');
+        $user['nomor_telepon'] = $this->request->getVar('nomor_telepon');
+        $user['level_user'] = $this->request->getVar('level_user');
+
+        $model->save($user);
+
         return redirect()->to(base_url('user'));
     }
+
     public function delete($id)
     {
         $model = new UserModel();

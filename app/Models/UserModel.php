@@ -10,7 +10,7 @@ class UserModel extends Model
     protected $primaryKey = 'user_id';
     protected $allowedFields = ['nama_lengkap', 'username', 'alamat', 'nomor_telepon', 'level_user'];
     public function getUsers()
-{
-    return $this->db->table('user')->get()->getResultArray();
-}   
+    {
+        return $this->db->table('user')->get()->getResultArray();
+    }
 }

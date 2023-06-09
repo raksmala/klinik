@@ -2,40 +2,64 @@
 
 namespace App\Controllers;
 
+use App\Models\ReservasiModel;
+use App\Models\TreatmentModel;
+
 class Home extends BaseController
 {
+    protected $reservasiModel, $treatmentModel;
+    public function __construct()
+    {
+        $this->reservasiModel = new ReservasiModel();
+        $this->treatmentModel = new TreatmentModel();
+        $this->jenisTreatment = $this->treatmentModel->getJenisTreatment();
+    }
+
     public function index()
     {
-        echo view('layout/header');
+        $data['jenis_treatment'] = $this->jenisTreatment;
+        echo view('layout/header', $data);
         echo view('Beranda');
         echo view('layout/footer');
     }
 
     public function klinik()
     {
-        echo view('layout/header');
+        $data['jenis_treatment'] = $this->jenisTreatment;
+        echo view('layout/header', $data);
         echo view('home/klinik');
-        echo view('layout/footer');
-    }
-
-    public function treatment()
-    {
-        echo view('layout/header');
-        echo view('home/treatment');
         echo view('layout/footer');
     }
 
     public function BeforeAfter()
     {
-        echo view('layout/header');
+        $data['jenis_treatment'] = $this->jenisTreatment;
+        echo view('layout/header', $data);
         echo view('home/BeforeAfter');
         echo view('layout/footer');
     }
 
     public function Riwayat()
     {
-        echo view('layout/header');
+        $data['jenis_treatment'] = $this->jenisTreatment;
+        echo view('layout/header', $data);
         echo view('home/Riwayat');
+        echo view('layout/footer');
+    }
+
+    public function Treatment($jenis)
+    {
+        $data['treatments'] = $this->treatmentModel->getTreatment($jenis);
+        echo view('layout/header');
+        echo view('home/Treatment', $data);
+        echo view('layout/footer');
+    }
+
+    public function Detail($treatment)
+    {
+        $data['detail'] = $this->treatmentModel->getDetail($treatment);
+        echo view('layout/header');
+        echo view('home/Detail', $data);
         echo view('layout/footer');
     }
 
@@ -442,5 +466,33 @@ class Home extends BaseController
     public function DAdmin()
     {
         echo view('Admin/DAdmin');
+    }
+
+    public function simpan()
+    {
+        $data = [
+            'tgl_reservasi' => $this->request->getPost('tanggal'),
+            'sesi_reservasi' => $this->request->getPost('jam'),
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'alamat' => $this->request->getPost('alamat'),
+            'nomor_telepon' => $this->request->getPost('nomor_telepon'),
+            'nama_treatment' => $this->request->getPost('nama_treatment'),
+            'total' => $this->request->getPost('total'),
+            'status_pembayaran' => 'Dalam Proses',
+            'user_id' => $this->request->getPost('user_id'),
+        ];
+        $this->reservasiModel->insertData($data);
+
+        $redirect = $this->request->getPost('return_url') ?? '/';
+        return redirect()->to($redirect);
+    }
+
+    public function cekSesi()
+    {
+        $tanggal = $this->request->getVar('tanggal');
+        $treatment = $this->request->getVar('treatment');
+
+        $sesi = $this->reservasiModel->cekSesi($treatment, $tanggal);
+        return json_encode($sesi);
     }
 }
