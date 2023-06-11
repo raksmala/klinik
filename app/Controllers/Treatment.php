@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\TreatmentModel;
+use Dompdf\Dompdf;
 
 class Treatment extends Controller
 {
@@ -38,9 +39,15 @@ class Treatment extends Controller
             '15.00 - 17.00' => $this->request->getPost('sesi_treatment_4'),
         ];
 
+        // handle file upload gambar_treatment to img/treatment
+        $fileGambarTreatment = $this->request->getFile('gambar_treatment');
+        $fileGambarTreatment->move('img/treatment');
+        $namaGambarTreatment = $fileGambarTreatment->getName();
+
         $data = [
             'nama_treatment' => $this->request->getPost('nama_treatment'),
             'jenis_treatment' => $this->request->getPost('jenis_treatment'),
+            'gambar_treatment' => $namaGambarTreatment,
             'desc_treatment' => $this->request->getPost('desc_treatment'),
             'harga_treatment' => $this->request->getPost('harga_treatment'),
             'durasi_treatment' => $this->request->getPost('durasi_treatment'),
@@ -67,6 +74,19 @@ class Treatment extends Controller
     {
         $treatment = $this->treatmentModel->find($id);
 
+        // handle file upload gambar_treatment to img/treatment
+        $image = $this->request->getFile('gambar_treatment');
+        $newName = $image->getName();
+        $path = 'img/treatment/' . $newName;
+        if ($image->isValid() && ! $image->hasMoved()) {
+            // random name file
+            $newName = $image->getRandomName();
+
+            // pindahkan file ke folder img/treatment
+            $image->move('img/treatment', $newName);
+            $path = 'img/treatment/' . $newName;
+        }
+
         $sesi_treatment = [
             '08.00 - 10.00' => $this->request->getPost('sesi_treatment_1'),
             '10.00 - 12.00' => $this->request->getPost('sesi_treatment_2'),
@@ -77,6 +97,7 @@ class Treatment extends Controller
         $treatment = [
             'nama_treatment' => $this->request->getPost('nama_treatment'),
             'jenis_treatment' => $this->request->getPost('jenis_treatment'),
+            'gambar_treatment' => $path,
             'desc_treatment' => $this->request->getPost('desc_treatment'),
             'harga_treatment' => $this->request->getPost('harga_treatment'),
             'durasi_treatment' => $this->request->getPost('durasi_treatment'),
@@ -102,5 +123,27 @@ class Treatment extends Controller
         $this->treatmentModel->updateTreatment($id, $data);
 
         return redirect()->to(base_url('/Admin/Treatment'));
+    }
+
+    public function export()
+    {
+        $data['dataTreatment'] = $this->treatmentModel->getdata();
+        // filename
+        $filename = 'treatment_' . date('YmdHis') . '.pdf';
+        
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+
+        // load HTML content
+        $dompdf->loadHtml(view('adminTreatment/export', $data));
+
+        // (optional) setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // render html as PDF
+        $dompdf->render();
+
+        // output the generated pdf
+        $dompdf->stream($filename);
     }
 }

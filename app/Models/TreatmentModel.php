@@ -11,7 +11,7 @@ class TreatmentModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $protectFields = true;
-    protected $allowedFields = ['nama_treatment', 'desc_treatment', 'jenis_treatment', 'harga_treatment', 'durasi_treatment', 'jangka_ulang_treatment', 'tahap_treatment', 'manfaat_treatment', 'perhatian', 'sesi_treatment', 'is_deleted'];
+    protected $allowedFields = ['nama_treatment', 'gambar_treatment', 'desc_treatment', 'jenis_treatment', 'harga_treatment', 'durasi_treatment', 'jangka_ulang_treatment', 'tahap_treatment', 'manfaat_treatment', 'perhatian', 'sesi_treatment', 'is_deleted'];
 
     public function getdata()
     {

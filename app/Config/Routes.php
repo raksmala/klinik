@@ -62,19 +62,29 @@ $routes->get('user/create', 'UserController::create');
 $routes->post('user/store', 'UserController::store');
 $routes->match(['get', 'post'], 'user/delete/(:num)', 'UserController::delete/$1');
 $routes->get('Admin/User', 'UserController::index');
-$routes->get('Admin/Treatment', 'Treatment::index');
-$routes->get('Admin/Reservasi', 'Reservasi::index');
 $routes->post('user/update/(:num)', 'UserController::update/$1');
 
 // CRUD TREATMENT
+$routes->get('Admin/Treatment', 'Treatment::index');
 $routes->get('adminTreatment/create', 'Treatment::create');
 $routes->post('adminTreatment/simpan', 'Treatment::simpan');
 $routes->get('treatment/delete/(:num)', 'Treatment::hapus/$1');
 $routes->get('treatment/edit/(:num)', 'Treatment::edit/$1');
 $routes->post('treatment/update/(:num)', 'Treatment::update/$1');
-// Export File Excel
-$routes->get('Admin/exportTreatment', 'Treatment::export');
-$routes->get('Admin/laporan_pdf', 'Treatment::pdf');
+
+// CRUD RESERVASI
+$routes->get('Admin/Reservasi', 'Reservasi::index');
+$routes->get('Admin/Reservasi/edit/(:num)', 'Reservasi::edit/$1');
+$routes->get('Admin/Reservasi/batal/(:num)', 'Reservasi::batal/$1');
+$routes->post('Admin/Reservasi/update/(:num)', 'Reservasi::update/$1');
+
+// Export File Pdf
+$routes->get('Admin/Treatment/laporan-pdf', 'Treatment::export');
+$routes->get('Admin/Reservasi/laporan-pdf', 'Reservasi::export');
+$routes->get('Admin/Laporan/harian/laporan-pdf/(:any)', 'Home::harian/$1');
+$routes->get('Admin/Laporan/bulanan/laporan-pdf/(:any)', 'Home::bulanan/$1');
+$routes->get('Admin/Laporan/tahunan/laporan-pdf/(:any)', 'Home::tahunan/$1');
+$routes->get('Admin/Laporan/treatment/laporan-pdf/(:any)', 'Home::laporanTreatment/$1');
 
 // Panggil Ajax Tanggal
 $routes->get('/Reservasi/RFacialGold', 'Tanggal::index');

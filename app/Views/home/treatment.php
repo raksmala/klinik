@@ -16,7 +16,10 @@
             <?php foreach($treatments as $treatment) { ?>
                 <div class="col mb-4">
                     <div class="card" style="width: 20rem;">
-                        <img src="/img/facial basic.jpg" class="card-img-top" alt="...">
+                        <?php
+                            $image = ($treatment->gambar_treatment != '') ? $treatment->gambar_treatment : 'img/facial basic.jpg';
+                        ?>
+                        <img src="/<?= $image ?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?= $treatment->nama_treatment ?></h5>
                             <p class="card-text"><?= $treatment->desc_treatment ?></p>

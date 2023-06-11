@@ -64,7 +64,10 @@
                     <div class="container">
                         <div class="row flex shadow">
                             <div class="col-4 p-0">
-                                <img src="/img/facial basic.jpg" class="img-fluid" alt="...">
+                                <?php
+                                    $image = ($detail->gambar_treatment != '') ? $detail->gambar_treatment : 'img/facial basic.jpg';
+                                ?>
+                                <img src="/<?= $image ?>" class="img-fluid" alt="...">
                             </div>
                             <div class="col-8 my-3">
                                 <h4 class="text-base md:text-lg text-gray-800 font-bold"><?= $detail->nama_treatment ?></h4>
@@ -90,7 +93,7 @@
                             <p><small>(Pilih Salah Satu Sesi Treatment yang Masih Tersedia)</small></p>
                             <div class="container">
                                 <?php
-                                    $detail->sesi_treatment = json_decode($detail->sesi_treatment, true);
+                                $detail->sesi_treatment = json_decode($detail->sesi_treatment, true);
                                 ?>
                                 <div class="row mx-6 my-3">
                                     <div class="col-6 col-sm-5">
@@ -178,7 +181,7 @@
                 $('.js-checkbox').each(function() {
                     const sesi = $(this).val();
 
-                    if(groupedData[sesi] === parseInt($(this).data('max'))) {
+                    if (groupedData[sesi] === parseInt($(this).data('max'))) {
                         $(this).prop('disabled', true);
                         $(this).next().addClass('disabled');
                     } else {
@@ -194,9 +197,9 @@
         const checked = $(this).find('.js-checkbox').prop('checked');
         const sesi = $(this).find('.js-checkbox').val();
 
-        if(checked) {
+        if (checked) {
             $('.js-checkbox').each(function() {
-                if($(this).val() !== sesi) {
+                if ($(this).val() !== sesi) {
                     $(this).prop('disabled', true);
                     $(this).next().addClass('disabled');
                 }

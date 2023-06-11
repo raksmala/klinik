@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <p class="card-title">Data Treatment</p>
                         <div class="col-auto">
-                            <a href="Admin/laporan_pdf" class="btn btn-info my-3" target="_blank">Export File Pdf</a>
+                            <a href="Treatment/laporan-pdf" class="btn btn-info my-3" target="_blank">Export File Pdf</a>
                             <div class="row">
                                 <div class="col-12">
                                     <a href="<?= base_url('adminTreatment/create') ?>" class="bi bi-plus blue-color float-right"></a>

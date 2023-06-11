@@ -1,26 +1,50 @@
-<!DOCTYPE html>
-<html>
+<style>
+    @page {
+        size: landscape;
+    }
 
-<head>
-    <title></title>
-</head>
+    .center-table {
+        width: 100%;
+        table-layout: fixed;
+    }
 
-<body>
-    <table>
+    .center-table tr {
+        text-align: center;
+    }
+
+    .center-table td {
+        vertical-align: middle;
+        width: 100%;
+    }
+</style>
+
+<table class="table center-table">
+    <thead>
         <tr>
-            <th>ID Treatment</th>
-            <th>Nama Treatment</th>
-            <th>Jenis Treatment</th>
+            <th>No</th>
+            <th>Tanggal Reservasi</th>
+            <th>Sesi Reservasi</th>
+            <th>Nama Lengkap</th>
+            <th>Nomor Telepon</th>
+            <th>Alamat</th>
+            <th>Treatment</th>
+            <th>Total Pembayaran</th>
+            <th>Status Pembayaran</th>
         </tr>
-        <?php foreach ($dataTreatment as $treatment) : ?>
+    </thead>
+    <tbody>
+        <?php foreach ((array) $dataReservasi as $key => $reservasi) { ?>
             <tr>
-                <td><?= $treatment->id_treatment ?></td>
-                <td><?= $treatment->nama_treatment ?></td>
-                <td><?= $treatment->jenis_treatment ?></td>
+                <td><?= ++$key ?>.</td>
+                <td><?= $reservasi->tgl_reservasi ?></td>
+                <td><?= $reservasi->sesi_reservasi ?></td>
+                <td><?= $reservasi->nama_lengkap ?></td>
+                <td><?= $reservasi->nomor_telepon ?></td>
+                <td><?= $reservasi->alamat ?></td>
+                <td><?= $reservasi->nama_treatment ?></td>
+                <td><?= $reservasi->total ?></td>
+                <td><?= $reservasi->status_pembayaran ?></td>
             </tr>
-        <?php endforeach; ?>
-
-    </table>
-</body>
-
-</html>
+        <?php } ?>
+    </tbody>
+</table>

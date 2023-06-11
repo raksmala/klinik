@@ -19,7 +19,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <label>Tanggal</label>
-                                                <select name="tanggal" class="form-control">
+                                                <select name="harian_tanggal" class="form-control harian-tanggal">
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -55,39 +55,37 @@
                                             </div>
                                             <div class="col">
                                                 <label>Bulan</label>
-                                                <select name="tanggal" class="form-control">
-                                                    <option value="Jan">Januari</option>
-                                                    <option value="Feb">Februari</option>
-                                                    <option value="Mar">Maret</option>
-                                                    <option value="Apr">April</option>
-                                                    <option value="Mei">Mei</option>
-                                                    <option value="Jun">Juni</option>
-                                                    <option value="Jul">Juli</option>
-                                                    <option value="Agus">Agustus</option>
-                                                    <option value="Sep">September</option>
-                                                    <option value="Okt">Oktober</option>
-                                                    <option value="Nov">November</option>
-                                                    <option value="Des">Desember</option>
+                                                <select name="harian_bulan" class="form-control harian-bulan">
+                                                    <option value="01">Januari</option>
+                                                    <option value="02">Februari</option>
+                                                    <option value="03">Maret</option>
+                                                    <option value="04">April</option>
+                                                    <option value="05">Mei</option>
+                                                    <option value="06">Juni</option>
+                                                    <option value="07">Juli</option>
+                                                    <option value="08">Agustus</option>
+                                                    <option value="09">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
                                                 </select>
                                             </div>
                                             <div class="col">
                                                 <label>Tahun</label>
-                                                <select name="tanggal" class="form-control">
+                                                <select name="harian_tahun" class="form-control harian-tahun">
                                                     <option value="2023">2023</option>
                                                     <option value="2024">2024</option>
                                                     <option value="2025">2025</option>
                                                 </select>
                                             </div>
+                                            <input type="hidden" class="harian" name="harian" value="2023-01-01">
 
                                             <div class="col mt-3 mb-3 mx-3">
-                                                <br><a href="#" class="btn btn-primary">Export PDF</a>
-                                                <a href="#" class="btn btn-primary">Cetak Laporan</a>
+                                                <br><a href="Laporan/harian/laporan-pdf/2023-01-01" class="btn btn-primary export-url-harian" target="_blank">Export PDF</a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-4">
                                     <div class="card flex shadow mb-5">
                                         <div class="card-header">
@@ -96,35 +94,34 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <label>Bulan</label>
-                                                <select name="tanggal" class="form-control">
-                                                    <option value="Jan">Januari</option>
-                                                    <option value="Feb">Februari</option>
-                                                    <option value="Mar">Maret</option>
-                                                    <option value="Apr">April</option>
-                                                    <option value="Mei">Mei</option>
-                                                    <option value="Jun">Juni</option>
-                                                    <option value="Jul">Juli</option>
-                                                    <option value="Agus">Agustus</option>
-                                                    <option value="Sep">September</option>
-                                                    <option value="Okt">Oktober</option>
-                                                    <option value="Nov">November</option>
-                                                    <option value="Des">Desember</option>
+                                                <select name="tanggal" class="form-control bulanan-bulan">
+                                                    <option value="01">Januari</option>
+                                                    <option value="02">Februari</option>
+                                                    <option value="03">Maret</option>
+                                                    <option value="04">April</option>
+                                                    <option value="05">Mei</option>
+                                                    <option value="06">Juni</option>
+                                                    <option value="07">Juli</option>
+                                                    <option value="08">Agustus</option>
+                                                    <option value="09">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
                                                 </select>
                                             </div>
                                             <div class="col-6">
                                                 <label>Tahun</label>
-                                                <select name="tanggal" class="form-control">
+                                                <select name="tanggal" class="form-control bulanan-tahun">
                                                     <option value="2023">2023</option>
                                                     <option value="2024">2024</option>
                                                     <option value="2025">2025</option>
                                                 </select>
                                             </div>
+                                            <input type="hidden" class="bulanan" name="bulanan" value="2023-01">
 
                                             <div class="col mt-3 mb-3 mx-3">
-                                                <br><a href="#" class="btn btn-primary">Export PDF</a>
-                                                <a href="#" class="btn btn-primary">Cetak Laporan</a>
+                                                <br><a href="Laporan/bulanan/laporan-pdf/2023-01" class="btn btn-primary export-url-bulanan" target="_blank">Export PDF</a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -136,18 +133,40 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <label>Tahun</label>
-                                                <select name="tanggal" class="form-control">
+                                                <select name="tanggal" class="form-control tahunan-tahun">
                                                     <option value="2023">2023</option>
                                                     <option value="2024">2024</option>
                                                     <option value="2025">2025</option>
                                                 </select>
                                             </div>
+                                            <input type="hidden" class="tahunan" name="tahunan" value="2023">
 
                                             <div class="col mt-6 mb-3 mx-3">
-                                                <br><a href="#" class="btn btn-primary">Export PDF</a>
-                                                <a href="#" class="btn btn-primary">Cetak Laporan</a>
+                                                <br><a href="Laporan/tahunan/laporan-pdf/2023" class="btn btn-primary export-url-tahunan" target="_blank">Export PDF</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="card flex shadow mb-5">
+                                        <div class="card-header">
+                                            Laporan Per Treatment
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label>Nama Treatment</label>
+                                                <select class="form-control nama-treatment" name="nama_treatment" id="nama_treatment">
+                                                    <?php foreach($treatment as $t) { ?>
+                                                        <option value="<?= $t->nama_treatment ?>"><?= $t->nama_treatment ?></option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
 
+                                            <div class="col mt-3 mb-3 mx-3">
+                                                <br><a href="Laporan/treatment/laporan-pdf/Facial-Basic" class="btn btn-primary export-url-treatment" target="_blank">Export PDF</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -164,4 +183,91 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <?php $this->endSection(); ?>
-</div>
+
+<?php $this->section('script'); ?>
+<script>
+    $('.harian-tanggal').on('change', function() {
+        let harian = $('.harian').val();
+        let explode = harian.split('-');
+
+        let tanggal = $('.harian-tanggal').val();
+        explode[2] = tanggal;
+
+        let implode = explode.join('-');
+        $('.harian').val(implode);
+        $('.export-url-harian').attr('href', 'Laporan/harian/laporan-pdf/' + implode);
+    });
+
+    $('.harian-bulan').on('change', function() {
+        let harian = $('.harian').val();
+        let explode = harian.split('-');
+
+        let bulan = $('.harian-bulan').val();
+        explode[1] = bulan;
+
+        let implode = explode.join('-');
+        $('.harian').val(implode);
+        $('.export-url-harian').attr('href', 'Laporan/harian/laporan-pdf/' + implode);
+    });
+
+    $('.harian-tahun').on('change', function() {
+        let harian = $('.harian').val();
+        let explode = harian.split('-');
+
+        let tahun = $('.harian-tahun').val();
+        explode[0] = tahun;
+
+        let implode = explode.join('-');
+        $('.harian').val(implode);
+        $('.export-url-harian').attr('href', 'Laporan/harian/laporan-pdf/' + implode);
+    });
+
+    $('.bulanan-bulan').on('change', function() {
+        let bulanan = $('.bulanan').val();
+        let explode = bulanan.split('-');
+
+        let bulan = $('.bulanan-bulan').val();
+        explode[1] = bulan;
+
+        let implode = explode.join('-');
+        $('.bulanan').val(implode);
+        $('.export-url-bulanan').attr('href', 'Laporan/bulanan/laporan-pdf/' + implode);
+    });
+
+    $('.bulanan-tahun').on('change', function() {
+        let bulanan = $('.bulanan').val();
+        let explode = bulanan.split('-');
+
+        let tahun = $('.bulanan-tahun').val();
+        explode[0] = tahun;
+
+        let implode = explode.join('-');
+        $('.bulanan').val(implode);
+        $('.export-url-bulanan').attr('href', 'Laporan/bulanan/laporan-pdf/' + implode);
+    });
+
+    $('.tahunan-tahun').on('change', function() {
+        let tahunan = $('.tahunan').val();
+        let explode = tahunan.split('-');
+
+        let tahun = $('.tahunan-tahun').val();
+        explode[0] = tahun;
+
+        let implode = explode.join('-');
+        $('.tahunan').val(implode);
+        $('.export-url-tahunan').attr('href', 'Laporan/tahunan/laporan-pdf/' + implode);
+    });
+
+    $('.nama-treatment').on('change', function() {
+        let jenis = $('.nama-treatment').val();
+        // explode ( and get first element
+        let detail_url = jenis.split('(')[0];
+        // trim space
+        detail_url = detail_url.trim();
+        // replace all space with -
+        detail_url = detail_url.replace(/\s/g, '-');
+
+        $('.export-url-treatment').attr('href', 'Laporan/treatment/laporan-pdf/' + detail_url);
+    });
+</script>
+<?php $this->endSection(); ?>

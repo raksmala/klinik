@@ -21,7 +21,10 @@
         <div class="flex flex-col p-5 bg-white shadow relative max-w-[592px]">
             <div class="row">
                 <div class="col-sm-3">
-                    <img src="/img/basic facial.jpg" class="card-img" alt="...">
+                    <?php
+                        $image = ($detail->gambar_treatment != '') ? $detail->gambar_treatment : 'img/facial basic.jpg';
+                    ?>
+                    <img src="/<?= $image ?>" class="card-img" alt="...">
                 </div>
                 <div class="col-sm-9">
                     <div class="row">

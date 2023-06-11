@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ReservasiModel;
 use App\Models\TreatmentModel;
+use Dompdf\Dompdf;
 
 class Home extends BaseController
 {
@@ -110,7 +111,8 @@ class Home extends BaseController
 
     public function Laporan()
     {
-        echo view('Admin/Laporan');
+        $data['treatment'] = $this->treatmentModel->getdata();
+        echo view('Admin/Laporan', $data);
     }
 
     public function DAdmin()
@@ -147,5 +149,99 @@ class Home extends BaseController
 
         $sesi = $this->reservasiModel->cekSesi($treatment, $tanggal);
         return json_encode($sesi);
+    }
+
+    public function harian($tanggal)
+    {
+        $tanggalAwal = $tanggal;
+        $tanggalAkhir = $tanggal;
+        $data['dataReservasi'] = $this->reservasiModel->getDataRange($tanggalAwal, $tanggalAkhir);
+        // filename
+        $filename = 'reservasi_' . date('YmdHis') . '.pdf';
+        
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+
+        // load HTML content
+        $dompdf->loadHtml(view('Admin/laporan_pdf', $data));
+
+        // (optional) setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // render html as PDF
+        $dompdf->render();
+
+        // output the generated pdf
+        $dompdf->stream($filename);
+    }
+
+    public function bulanan($bulan)
+    {
+        $tanggalAwal = $bulan . '-01';
+        $tanggalAkhir = $bulan . '-31';
+        $data['dataReservasi'] = $this->reservasiModel->getDataRange($tanggalAwal, $tanggalAkhir);
+        // filename
+        $filename = 'reservasi_' . date('YmdHis') . '.pdf';
+        
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+
+        // load HTML content
+        $dompdf->loadHtml(view('Admin/laporan_pdf', $data));
+
+        // (optional) setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // render html as PDF
+        $dompdf->render();
+
+        // output the generated pdf
+        $dompdf->stream($filename);
+    }
+
+    public function tahunan($tahun)
+    {
+        $tanggalAwal = $tahun . '-01-01';
+        $tanggalAkhir = $tahun . '-12-31';
+        $data['dataReservasi'] = $this->reservasiModel->getDataRange($tanggalAwal, $tanggalAkhir);
+        // filename
+        $filename = 'reservasi_' . date('YmdHis') . '.pdf';
+        
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+
+        // load HTML content
+        $dompdf->loadHtml(view('Admin/laporan_pdf', $data));
+
+        // (optional) setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // render html as PDF
+        $dompdf->render();
+
+        // output the generated pdf
+        $dompdf->stream($filename);
+    }
+
+    public function laporanTreatment($nama_treatment)
+    {
+        $data['dataReservasi'] = $this->reservasiModel->getDataTreatment($nama_treatment);
+        // filename
+        $filename = 'reservasi_' . date('YmdHis') . '.pdf';
+        
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+
+        // load HTML content
+        $dompdf->loadHtml(view('Admin/laporan_pdf', $data));
+
+        // (optional) setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // render html as PDF
+        $dompdf->render();
+
+        // output the generated pdf
+        $dompdf->stream($filename);
     }
 }

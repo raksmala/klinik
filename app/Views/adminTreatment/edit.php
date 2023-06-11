@@ -10,7 +10,7 @@
         </ol>
     </div>
     <div class="card mb-4">
-        <form method="post" action="<?= base_url('treatment/update') . '/'. $dataTreatment['id_treatment'] ?>">
+        <form method="post" action="<?= base_url('treatment/update') . '/'. $dataTreatment['id_treatment'] ?>" enctype="multipart/form-data">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Form Edit Data Treatment</h6>
             </div>
@@ -31,6 +31,10 @@
                         <option value="Hair Treatment" <?php if ($dataTreatment['jenis_treatment'] == 'Hair Treatment') echo 'selected' ?>>Hair Treatment</option>
                         <option value="Other Treatment" <?php if ($dataTreatment['jenis_treatment'] == 'Other Treatment') echo 'selected' ?>>Other Treatment</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="gambar_treatment">Gambar Treatment (Kosongkan jika tidak ingin mengubah)</label>
+                    <input type="file" class="form-control" name="gambar_treatment" id="gambar_treatment" placeholder="Gambar Treatment" accept="image/*">
                 </div>
                 <div class="form-group">
                     <label for="desc_treatment">Deskripsi Treatment</label>

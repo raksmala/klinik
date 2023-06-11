@@ -10,7 +10,7 @@
         </ol>
     </div>
     <div class="card mb-4">
-        <form method="post" action="<?= base_url('adminTreatment/simpan') ?>">
+        <form method="post" action="<?= base_url('adminTreatment/simpan') ?>" enctype="multipart/form-data">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Form Tambah Data Treatment</h6>
             </div>
@@ -31,6 +31,10 @@
                         <option value="Hair Treatment">Hair Treatment</option>
                         <option value="Other Treatment">Other Treatment</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="gambar_treatment">Gambar Treatment</label>
+                    <input type="file" class="form-control" name="gambar_treatment" id="gambar_treatment" placeholder="Gambar Treatment" required accept="image/*">
                 </div>
                 <div class="form-group">
                     <label for="desc_treatment">Deskripsi Treatment</label>

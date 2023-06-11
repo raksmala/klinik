@@ -6,16 +6,23 @@ use CodeIgniter\Model;
 
 class ReservasiModel extends Model
 {
+    protected $table = 'reservasi';
+    protected $primaryKey = 'id_reservasi';
+    protected $useAutoIncrement = true;
+    protected $returnType = 'array';
+    protected $protectFields = true;
+    protected $allowedFields = ['tgl_reservasi', 'sesi_reservasi', 'nama_lengkap', 'alamat', 'nomor_telepon', 'nama_treatment', 'total', 'status_pembayaran', 'user_id', 'id_deleted'];
+
     public function getdata()
     {
-        $query = $this->db->query("SELECT * FROM reservasi ORDER BY nama_treatment ASC");
+        $query = $this->db->query("SELECT * FROM reservasi WHERE is_deleted IS NULL ORDER BY tgl_reservasi DESC");
 
         return $query->getResult();
     }
 
     public function getReservasi($user_id)
     {
-        $query = $this->db->query("SELECT * FROM reservasi JOIN user ON reservasi.user_id = user.user_id WHERE reservasi.user_id = '$user_id'");
+        $query = $this->db->query("SELECT * FROM reservasi JOIN user ON reservasi.user_id = user.user_id WHERE reservasi.user_id = '$user_id' AND is_deleted IS NULL");
 
         return $query->getResult();
     }
@@ -26,8 +33,26 @@ class ReservasiModel extends Model
         return $query;
     }
 
-    function cekSesi($treatment, $tanggal) {
+    public function updateReservasi($id, $data)
+    {
+        $this->db->table('reservasi')->where('id_reservasi', $id)->update($data);
+        return true;
+    }
+
+    public function cekSesi($treatment, $tanggal) {
         $query = $this->db->query("SELECT * FROM reservasi WHERE nama_treatment = '$treatment' AND tgl_reservasi = '$tanggal'");
+        return $query->getResult();
+    }
+
+    public function getDataRange($tanggal_awal, $tanggal_akhir) {
+        $query = $this->db->query("SELECT * FROM reservasi WHERE tgl_reservasi BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND is_deleted IS NULL");
+        return $query->getResult();
+    }
+
+    public function getDataTreatment($treatment) {
+        $treatment = str_replace('-', ' ', $treatment);
+        $query = $this->db->query("SELECT * FROM reservasi WHERE nama_treatment LIKE '%$treatment%' AND is_deleted IS NULL");
+
         return $query->getResult();
     }
 }
