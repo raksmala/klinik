@@ -68,5 +68,10 @@
             "type": "vcs",
             "url": "git@github.com:benedmunds/CodeIgniter-Ion-Auth.git"
         }
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.9"
+        }
     }
 }
