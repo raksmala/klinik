@@ -40,6 +40,10 @@
             cursor: not-allowed;
         }
 
+        .custom-checkbox.disabled {
+            pointer-events: none;
+        }
+
         .custom-checkbox .custom-checkbox-input:checked~.custom-checkbox-label,
         .custom-checkbox .custom-checkbox-input:hover~.custom-checkbox-label {
             background-color: #1E90FF;
@@ -181,10 +185,12 @@
                 $('.js-checkbox').each(function() {
                     const sesi = $(this).val();
 
-                    if (groupedData[sesi] === parseInt($(this).data('max'))) {
+                    if (groupedData[sesi] >= parseInt($(this).data('max'))) {
+                        $(this).parents('.custom-checkbox').addClass('is-max disabled');
                         $(this).prop('disabled', true);
                         $(this).next().addClass('disabled');
                     } else {
+                        $(this).parents('.custom-checkbox').removeClass('is-max disabled');
                         $(this).prop('disabled', false);
                         $(this).next().removeClass('disabled');
                     }
@@ -200,12 +206,21 @@
         if (checked) {
             $('.js-checkbox').each(function() {
                 if ($(this).val() !== sesi) {
+                    const parents = $(this).parents('.custom-checkbox');
+                    if(!parents.hasClass('is-max disabled')) {
+                        $(this).parents('.custom-checkbox').addClass('disabled');
+                    }
                     $(this).prop('disabled', true);
                     $(this).next().addClass('disabled');
                 }
             });
         } else {
             $('.js-checkbox').each(function() {
+                const parents = $(this).parents('.custom-checkbox');
+                if(parents.hasClass('is-max disabled')) {
+                    return;
+                }
+                parents.removeClass('disabled');
                 $(this).prop('disabled', false);
                 $(this).next().removeClass('disabled');
             });
