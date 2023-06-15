@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 11, 2023 at 05:47 AM
+-- Generation Time: Jun 15, 2023 at 07:18 AM
 -- Server version: 5.7.33
--- PHP Version: 8.1.16
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -96,7 +96,11 @@ INSERT INTO `reservasi` (`id_reservasi`, `tgl_reservasi`, `sesi_reservasi`, `nam
 (20, '2023-06-10', '08.00 - 10.00', 'C', 'Jalan ditempat', '0123456789', 'Facial Terbaru', 150000, 'Selesai', 54, NULL),
 (21, '2023-06-10', '08.00 - 10.00', 'C', 'Jalan ditempat', '0123456789', 'Facial Terbaru', 150000, 'Dalam Proses', 54, NULL),
 (22, '2023-06-10', '10.00 - 12.00', 'C', 'Jalan ditempat', '0123456789', 'Facial Terbaru', 150000, 'Dalam Proses', 54, '2023-06-10 03:47:09'),
-(23, '2023-06-12', '12.45 - 15.00', 'D', 'Jalannya nih', '0123456789', 'Facial Anti Acne', 55000, 'Dalam Proses', 57, NULL);
+(23, '2023-06-12', '12.45 - 15.00', 'D', 'Jalannya nih', '0123456789', 'Facial Anti Acne', 55000, 'Dalam Proses', 57, NULL),
+(24, '2023-06-15', '10.00 - 12.00', 'F', 'Asdasdas', '123123', 'Facial Basic', 55000, 'Dalam Proses', 60, NULL),
+(25, '2023-06-15', '10.00 - 12.00', 'F', 'Asdasdas', '123123', 'Facial Basic', 55000, 'Dalam Proses', 60, NULL),
+(26, '2023-06-15', '10.00 - 12.00', 'F', 'Asdasdas', '123123', 'Facial Basic', 55000, 'Dalam Proses', 60, NULL),
+(27, '2023-06-16', '08.00 - 10.00', 'F', 'Asdasdas', '123123', 'Facial Gold Snail Whitening', 56000, 'Dalam Proses', 60, NULL);
 
 -- --------------------------------------------------------
 
@@ -339,7 +343,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `reservasi`
 --
 ALTER TABLE `reservasi`
-  MODIFY `id_reservasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_reservasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `treatment`

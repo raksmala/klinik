@@ -93,18 +93,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <a class="nav-link" href="/Admin/Laporan">
                             <i class="icon-bar-graph menu-icon"></i>
                             <span class="menu-title">Laporan</span>
-                            <i class="menu-arrow"></i>
                         </a>
-                        <div class="collapse" id="ui-basic">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Admin/Laporan">Harian</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Bulanan</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Tahunan</a></li>
-                            </ul>
-                        </div>
                     </li>
                 </ul>
             </nav>
@@ -135,7 +127,7 @@
                                     <div class="card card-tale">
                                         <div class="card-body">
                                             <p class="mb-4">Data User</p>
-                                            <p class="fs-30 mb-2">60</p>
+                                            <p class="fs-30 mb-2"><?= $totalUser ?></p>
 
                                         </div>
                                     </div>
@@ -144,7 +136,7 @@
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
                                             <p class="mb-4">Data Treatment</p>
-                                            <p class="fs-30 mb-2">40</p>
+                                            <p class="fs-30 mb-2"><?= $totalTreatment ?></p>
 
                                         </div>
                                     </div>
@@ -155,7 +147,7 @@
                                     <div class="card card-light-blue">
                                         <div class="card-body">
                                             <p class="mb-4">Data Reservasi</p>
-                                            <p class="fs-30 mb-2">10</p>
+                                            <p class="fs-30 mb-2"><?= $totalReservasi ?></p>
 
                                         </div>
                                     </div>

@@ -57,4 +57,9 @@ class TreatmentModel extends Model
         $this->db->table('treatment')->where('id_treatment', $id)->update($data);
         return true;
     }
+
+    public function totalTreatment() {
+        $query = $this->db->query("SELECT * FROM treatment WHERE is_deleted IS NULL");
+        return $query->getNumRows();
+    }
 }

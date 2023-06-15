@@ -46,4 +46,10 @@ class ModelUser extends Model
     {
         $this->delete($id);
     }
+
+    public function totalUser()
+    {
+        $query = $this->db->query("SELECT * FROM user WHERE level_user = 'Pelanggan'");
+        return $query->getNumRows();
+    }
 }

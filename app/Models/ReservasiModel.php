@@ -49,10 +49,14 @@ class ReservasiModel extends Model
         return $query->getResult();
     }
 
-    public function getDataTreatment($treatment) {
-        $treatment = str_replace('-', ' ', $treatment);
-        $query = $this->db->query("SELECT * FROM reservasi WHERE nama_treatment LIKE '%$treatment%' AND is_deleted IS NULL");
+    public function getDataTreatment($tanggal_awal, $tanggal_akhir, $treatment) {
+        $query = $this->db->query("SELECT * FROM reservasi WHERE tgl_reservasi BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND nama_treatment = '$treatment' AND is_deleted IS NULL");
 
         return $query->getResult();
+    }
+
+    public function totalReservasi() {
+        $query = $this->db->query("SELECT * FROM reservasi WHERE is_deleted IS NULL");
+        return $query->getNumRows();
     }
 }

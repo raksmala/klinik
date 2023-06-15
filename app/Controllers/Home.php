@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ReservasiModel;
 use App\Models\TreatmentModel;
+use App\Models\ModelUser;
 use Dompdf\Dompdf;
 
 class Home extends BaseController
@@ -13,6 +14,7 @@ class Home extends BaseController
     {
         $this->reservasiModel = new ReservasiModel();
         $this->treatmentModel = new TreatmentModel();
+        $this->userModel      = new ModelUser();
         $this->jenisTreatment = $this->treatmentModel->getJenisTreatment();
     }
 
@@ -101,7 +103,10 @@ class Home extends BaseController
 
     public function Home()
     {
-        echo view('Admin/Home');
+        $data['totalUser'] = $this->userModel->totalUser();
+        $data['totalReservasi'] = $this->reservasiModel->totalReservasi();
+        $data['totalTreatment'] = $this->treatmentModel->totalTreatment();
+        echo view('Admin/Home', $data);
     }
 
     public function Dasboard()
@@ -149,6 +154,37 @@ class Home extends BaseController
 
         $sesi = $this->reservasiModel->cekSesi($treatment, $tanggal);
         return json_encode($sesi);
+    }
+
+    public function export() {
+        $tanggalAwal = $this->request->getPost('tanggal_awal');
+        $tanggalAkhir = $this->request->getPost('tanggal_akhir');
+        $byTreatment = $this->request->getPost('filter');
+        $reservasi = [];
+        if($byTreatment == 'ya') {
+            $namaTreatment = $this->request->getPost('nama_treatment');
+            $reservasi = $this->reservasiModel->getDataTreatment($tanggalAwal, $tanggalAkhir, $namaTreatment);
+        } else if($byTreatment == 'tidak') {
+            $reservasi = $this->reservasiModel->getDataRange($tanggalAwal, $tanggalAkhir);
+        }
+        $data['dataReservasi'] = $reservasi;
+        // filename
+        $filename = 'reservasi_' . date('YmdHis') . '.pdf';
+        
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+
+        // load HTML content
+        $dompdf->loadHtml(view('Admin/laporan_pdf', $data));
+
+        // (optional) setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // render html as PDF
+        $dompdf->render();
+
+        // output the generated pdf
+        $dompdf->stream($filename);
     }
 
     public function harian($tanggal)

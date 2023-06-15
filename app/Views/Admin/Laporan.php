@@ -9,7 +9,53 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title">Laporan Reservasi</p><br>
-                        <div class="container">
+                        <form method="POST" action="/Admin/Laporan/export">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="startDate">Tanggal Awal</label>
+                                        <input type="date" class="form-control" id="tanggal_awal" name="tanggal_awal">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="endDate">Tanggal Akhir</label>
+                                        <input type="date" class="form-control" id="tanggal_akhir" name="tanggal_akhir">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="filter">Filter by Treatment:</label><br>
+                                        <div class="row ml-3">
+                                            <div class="form-check col-md-2">
+                                                <input type="radio" class="form-check-input" id="filter_ya" name="filter" value="ya">
+                                                <label class="form-check-label ml-1" for="filter_ya">Ya</label>
+                                            </div>
+                                            <div class="form-check col-md-2">
+                                                <input type="radio" class="form-check-input" id="filter_tidak" name="filter" value="tidak" checked>
+                                                <label class="form-check-label ml-1" for="filter_tidak">Tidak</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 treatment" style="display: none;">
+                                    <div class="form-group">
+                                        <label>Nama Treatment</label>
+                                        <select class="form-control" name="nama_treatment" id="nama_treatment">
+                                            <?php foreach ($treatment as $t) { ?>
+                                                <option value="<?= $t->nama_treatment ?>"><?= $t->nama_treatment ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Export PDF</button>
+                        </form>
+                        <!-- <div class="container">
                             <div class="row">
                                 <div class="col-4">
                                     <div class="card flex shadow mb-5">
@@ -158,7 +204,7 @@
                                             <div class="col-12">
                                                 <label>Nama Treatment</label>
                                                 <select class="form-control nama-treatment" name="nama_treatment" id="nama_treatment">
-                                                    <?php foreach($treatment as $t) { ?>
+                                                    <?php foreach ($treatment as $t) { ?>
                                                         <option value="<?= $t->nama_treatment ?>"><?= $t->nama_treatment ?></option>
                                                     <?php } ?>
                                                 </select>
@@ -171,7 +217,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -186,6 +232,22 @@
 
 <?php $this->section('script'); ?>
 <script>
+    $('#filter_ya').on('click', function() {
+        if ($(this).is(':checked')) {
+            $('.treatment').css('display', 'block');
+        } else {
+            $('.treatment').css('display', 'none');
+        }
+    });
+
+    $('#filter_tidak').on('click', function() {
+        if ($(this).is(':checked')) {
+            $('.treatment').css('display', 'none');
+        } else {
+            $('.treatment').css('display', 'block');
+        }
+    });
+
     $('.harian-tanggal').on('change', function() {
         let harian = $('.harian').val();
         let explode = harian.split('-');
