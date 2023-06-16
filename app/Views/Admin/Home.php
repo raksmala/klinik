@@ -51,6 +51,24 @@
                 </button>
 
                 <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                            <i class="icon-bell mx-0"></i>
+                            <?php if(count($notifikasi) > 0) { ?>
+                                <span class="count"></span>
+                            <?php } ?>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                            <p class="mb-0 font-weight-normal float-left dropdown-header">Pemberitahuan</p>
+                            <?php foreach($notifikasi as $notif) { ?>
+                                <a class="dropdown-item preview-item bg-info text-white" href="<?= base_url('Admin/Notifikasi') . '/' . $notif->id_notifikasi ?>">
+                                    <p class="font-weight-light mb-0">
+                                        <span class="font-weight-bold"><?= $notif->nama_lengkap ?></span> telah melakukan reservasi <span class="font-weight-bold"><?= $notif->nama_treatment ?></span>
+                                    </p>
+                                </a>
+                            <?php } ?>
+                        </div>
+                    </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="dropdown-item" href="<?= base_url('logout') ?>">
                             <i class="ti-power-off text-primary"></i>
@@ -158,8 +176,8 @@
                                         <div class="card-body">
                                             <h4 class="card-title">Reservasi Baru (Dalam Proses)</h4>
                                             <ul class="list-group">
-                                                <?php foreach($reservasiDalamProses as $listReservasi) { ?>
-                                                    <li class="list-group-item"><?= $listReservasi->nama_lengkap ?> - <?= $listReservasi->nama_treatment ?></li>
+                                                <?php foreach ($notifikasi as $notif) { ?>
+                                                    <li class="list-group-item"><?= $notif->nama_lengkap ?> - <?= $notif->nama_treatment ?></li>
                                                 <?php } ?>
                                             </ul>
                                         </div>

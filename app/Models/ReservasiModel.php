@@ -30,7 +30,8 @@ class ReservasiModel extends Model
     public function insertData($data)
     {
         $query = $this->db->table('reservasi')->insert($data);
-        return $query;
+
+        return $this->db->insertID();
     }
 
     public function updateReservasi($id, $data)

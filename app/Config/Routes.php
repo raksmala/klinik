@@ -78,6 +78,9 @@ $routes->get('Admin/Reservasi/edit/(:num)', 'Reservasi::edit/$1');
 $routes->get('Admin/Reservasi/batal/(:num)', 'Reservasi::batal/$1');
 $routes->post('Admin/Reservasi/update/(:num)', 'Reservasi::update/$1');
 
+// Notifikasi
+$routes->get('Admin/Notifikasi/(:num)', 'Home::notifikasi/$1');
+
 // Export File Pdf
 $routes->get('Admin/Treatment/laporan-pdf', 'Treatment::export');
 $routes->get('Admin/Reservasi/laporan-pdf', 'Reservasi::export');

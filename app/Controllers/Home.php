@@ -5,16 +5,18 @@ namespace App\Controllers;
 use App\Models\ReservasiModel;
 use App\Models\TreatmentModel;
 use App\Models\ModelUser;
+use App\Models\NotifikasiModel;
 use Dompdf\Dompdf;
 
 class Home extends BaseController
 {
-    protected $reservasiModel, $treatmentModel;
+    protected $reservasiModel, $treatmentModel, $userModel, $jenisTreatment;
     public function __construct()
     {
         $this->reservasiModel = new ReservasiModel();
         $this->treatmentModel = new TreatmentModel();
         $this->userModel      = new ModelUser();
+        $this->notifikasiModel = new NotifikasiModel();
         $this->jenisTreatment = $this->treatmentModel->getJenisTreatment();
     }
 
@@ -106,8 +108,14 @@ class Home extends BaseController
         $data['totalUser'] = $this->userModel->totalUser();
         $data['totalReservasi'] = $this->reservasiModel->totalReservasi();
         $data['totalTreatment'] = $this->treatmentModel->totalTreatment();
-        $data['reservasiDalamProses'] = $this->reservasiModel->reservasiDalamProses();
+        $data['notifikasi'] = $this->notifikasiModel->getData();
         echo view('Admin/Home', $data);
+    }
+
+    public function notifikasi($id)
+    {
+        $this->notifikasiModel->read($id);
+        return redirect()->to('/Admin/Reservasi');
     }
 
     public function Dasboard()
@@ -142,7 +150,10 @@ class Home extends BaseController
         // remove Rp. and .
         $data['total'] = str_replace(['Rp. ', '.'], '', $data['total']);
         $data['total'] = trim($data['total']);
-        $this->reservasiModel->insertData($data);
+        $reservasi = $this->reservasiModel->insertData($data);
+
+        // simpan notifikasi dengan parameter id reservasi
+        $this->notifikasiModel->simpan($reservasi);
 
         $redirect = '/home/Riwayat';
         return redirect()->to($redirect);

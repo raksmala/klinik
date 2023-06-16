@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 15, 2023 at 07:18 AM
+-- Generation Time: Jun 16, 2023 at 11:31 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.1
 
@@ -63,6 +63,28 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notifikasi`
+--
+
+CREATE TABLE `notifikasi` (
+  `id_notifikasi` int(11) NOT NULL,
+  `id_reservasi` int(11) NOT NULL,
+  `is_readed` int(2) NOT NULL,
+  `is_deleted` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notifikasi`
+--
+
+INSERT INTO `notifikasi` (`id_notifikasi`, `id_reservasi`, `is_readed`, `is_deleted`) VALUES
+(3, 32, 0, NULL),
+(4, 33, 1, NULL),
+(5, 34, 0, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reservasi`
 --
 
@@ -100,7 +122,10 @@ INSERT INTO `reservasi` (`id_reservasi`, `tgl_reservasi`, `sesi_reservasi`, `nam
 (24, '2023-06-15', '10.00 - 12.00', 'F', 'Asdasdas', '123123', 'Facial Basic', 55000, 'Dalam Proses', 60, NULL),
 (25, '2023-06-15', '10.00 - 12.00', 'F', 'Asdasdas', '123123', 'Facial Basic', 55000, 'Dalam Proses', 60, NULL),
 (26, '2023-06-15', '10.00 - 12.00', 'F', 'Asdasdas', '123123', 'Facial Basic', 55000, 'Dalam Proses', 60, NULL),
-(27, '2023-06-16', '08.00 - 10.00', 'F', 'Asdasdas', '123123', 'Facial Gold Snail Whitening', 56000, 'Dalam Proses', 60, NULL);
+(27, '2023-06-16', '08.00 - 10.00', 'F', 'Asdasdas', '123123', 'Facial Gold Snail Whitening', 56000, 'Dalam Proses', 60, NULL),
+(32, '2023-06-17', '15.00 - 17.00', 'F', 'Asdasdas', '123123', 'Facial Ice Globe Roller (Include Masker WetP)', 55000, 'Dalam Proses', 60, NULL),
+(33, '2023-06-17', '15.00 - 17.00', 'F', 'Asdasdas', '123123', 'Facial Gold Snail Whitening', 56000, 'Dalam Proses', 60, NULL),
+(34, '2023-06-18', '12.45 - 15.00', 'F', 'Asdasdas', '123123', 'Double Chemical Peeling (Whitening / Acne)', 55000, 'Dalam Proses', 60, NULL);
 
 -- --------------------------------------------------------
 
@@ -305,6 +330,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notifikasi`
+--
+ALTER TABLE `notifikasi`
+  ADD PRIMARY KEY (`id_notifikasi`);
+
+--
 -- Indexes for table `reservasi`
 --
 ALTER TABLE `reservasi`
@@ -340,10 +371,16 @@ ALTER TABLE `migrations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `notifikasi`
+--
+ALTER TABLE `notifikasi`
+  MODIFY `id_notifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `reservasi`
 --
 ALTER TABLE `reservasi`
-  MODIFY `id_reservasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_reservasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `treatment`
