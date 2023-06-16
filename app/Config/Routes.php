@@ -82,10 +82,6 @@ $routes->post('Admin/Reservasi/update/(:num)', 'Reservasi::update/$1');
 $routes->get('Admin/Treatment/laporan-pdf', 'Treatment::export');
 $routes->get('Admin/Reservasi/laporan-pdf', 'Reservasi::export');
 $routes->post('Admin/Laporan/export', 'Home::export');
-$routes->get('Admin/Laporan/harian/laporan-pdf/(:any)', 'Home::harian/$1');
-$routes->get('Admin/Laporan/bulanan/laporan-pdf/(:any)', 'Home::bulanan/$1');
-$routes->get('Admin/Laporan/tahunan/laporan-pdf/(:any)', 'Home::tahunan/$1');
-$routes->get('Admin/Laporan/treatment/laporan-pdf/(:any)', 'Home::laporanTreatment/$1');
 
 // Panggil Ajax Tanggal
 $routes->get('/Reservasi/RFacialGold', 'Tanggal::index');

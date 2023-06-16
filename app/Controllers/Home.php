@@ -106,6 +106,7 @@ class Home extends BaseController
         $data['totalUser'] = $this->userModel->totalUser();
         $data['totalReservasi'] = $this->reservasiModel->totalReservasi();
         $data['totalTreatment'] = $this->treatmentModel->totalTreatment();
+        $data['reservasiDalamProses'] = $this->reservasiModel->reservasiDalamProses();
         echo view('Admin/Home', $data);
     }
 
@@ -160,108 +161,23 @@ class Home extends BaseController
         $tanggalAwal = $this->request->getPost('tanggal_awal');
         $tanggalAkhir = $this->request->getPost('tanggal_akhir');
         $byTreatment = $this->request->getPost('filter');
+        $data = [];
         $reservasi = [];
+        $namaTreatment = '';
         if($byTreatment == 'ya') {
             $namaTreatment = $this->request->getPost('nama_treatment');
             $reservasi = $this->reservasiModel->getDataTreatment($tanggalAwal, $tanggalAkhir, $namaTreatment);
         } else if($byTreatment == 'tidak') {
             $reservasi = $this->reservasiModel->getDataRange($tanggalAwal, $tanggalAkhir);
         }
+
         $data['dataReservasi'] = $reservasi;
-        // filename
-        $filename = 'reservasi_' . date('YmdHis') . '.pdf';
-        
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
+        // change format from yyyy-mm-dd to dd-mm-yyyy
+        $tanggalAwal = date('d F Y', strtotime($tanggalAwal));
+        $tanggalAkhir = date('d F Y', strtotime($tanggalAkhir));
+        $data['periode'] = $tanggalAwal . ' - ' . $tanggalAkhir;
+        $data['treatment'] = $byTreatment == 'ya' ? $namaTreatment : 'Semua';
 
-        // load HTML content
-        $dompdf->loadHtml(view('Admin/laporan_pdf', $data));
-
-        // (optional) setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
-
-        // render html as PDF
-        $dompdf->render();
-
-        // output the generated pdf
-        $dompdf->stream($filename);
-    }
-
-    public function harian($tanggal)
-    {
-        $tanggalAwal = $tanggal;
-        $tanggalAkhir = $tanggal;
-        $data['dataReservasi'] = $this->reservasiModel->getDataRange($tanggalAwal, $tanggalAkhir);
-        // filename
-        $filename = 'reservasi_' . date('YmdHis') . '.pdf';
-        
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
-
-        // load HTML content
-        $dompdf->loadHtml(view('Admin/laporan_pdf', $data));
-
-        // (optional) setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
-
-        // render html as PDF
-        $dompdf->render();
-
-        // output the generated pdf
-        $dompdf->stream($filename);
-    }
-
-    public function bulanan($bulan)
-    {
-        $tanggalAwal = $bulan . '-01';
-        $tanggalAkhir = $bulan . '-31';
-        $data['dataReservasi'] = $this->reservasiModel->getDataRange($tanggalAwal, $tanggalAkhir);
-        // filename
-        $filename = 'reservasi_' . date('YmdHis') . '.pdf';
-        
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
-
-        // load HTML content
-        $dompdf->loadHtml(view('Admin/laporan_pdf', $data));
-
-        // (optional) setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
-
-        // render html as PDF
-        $dompdf->render();
-
-        // output the generated pdf
-        $dompdf->stream($filename);
-    }
-
-    public function tahunan($tahun)
-    {
-        $tanggalAwal = $tahun . '-01-01';
-        $tanggalAkhir = $tahun . '-12-31';
-        $data['dataReservasi'] = $this->reservasiModel->getDataRange($tanggalAwal, $tanggalAkhir);
-        // filename
-        $filename = 'reservasi_' . date('YmdHis') . '.pdf';
-        
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
-
-        // load HTML content
-        $dompdf->loadHtml(view('Admin/laporan_pdf', $data));
-
-        // (optional) setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
-
-        // render html as PDF
-        $dompdf->render();
-
-        // output the generated pdf
-        $dompdf->stream($filename);
-    }
-
-    public function laporanTreatment($nama_treatment)
-    {
-        $data['dataReservasi'] = $this->reservasiModel->getDataTreatment($nama_treatment);
         // filename
         $filename = 'reservasi_' . date('YmdHis') . '.pdf';
         

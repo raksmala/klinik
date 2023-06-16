@@ -1,0 +1,38 @@
+CRITICAL - 2023-06-16 09:39:25 --> Undefined variable $namaTreatment
+in APPPATH\Controllers\Home.php on line 174.
+ 1 APPPATH\Controllers\Home.php(174): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $namaTreatment', 'APPPATH\\Controllers\\Home.php', 174)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->export()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-16 09:41:57 --> date(): Argument #2 ($timestamp) must be of type ?int, string given
+in APPPATH\Controllers\Home.php on line 175.
+ 1 APPPATH\Controllers\Home.php(175): date('d-m-Y', '2023-06-01')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->export()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-16 10:06:02 --> Cannot use object of type stdClass as array
+in APPPATH\Views\Admin\Home.php on line 162.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('Admin/Home', [], true)
+ 4 APPPATH\Controllers\Home.php(110): view('Admin/Home', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->Home()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-16 10:06:26 --> Cannot use object of type stdClass as array
+in APPPATH\Views\Admin\Home.php on line 162.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('Admin/Home', [], true)
+ 4 APPPATH\Controllers\Home.php(110): view('Admin/Home', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->Home()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')

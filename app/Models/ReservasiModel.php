@@ -59,4 +59,9 @@ class ReservasiModel extends Model
         $query = $this->db->query("SELECT * FROM reservasi WHERE is_deleted IS NULL");
         return $query->getNumRows();
     }
+
+    public function reservasiDalamProses() {
+        $query = $this->db->query("SELECT * FROM reservasi WHERE status_pembayaran = 'Dalam Proses' AND is_deleted IS NULL ORDER BY tgl_reservasi DESC");
+        return $query->getResult();
+    }
 }

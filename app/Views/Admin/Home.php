@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 grid-margin stretch-card">
+                        <div class="col-md-6 grid-margin">
                             <div class="card tale-bg">
                                 <div class="card mt-auto">
                                     <img src="/img/ruangDepan.jpeg" class="object-fit-cover border rounded">
@@ -148,73 +148,25 @@
                                         <div class="card-body">
                                             <p class="mb-4">Data Reservasi</p>
                                             <p class="fs-30 mb-2"><?= $totalReservasi ?></p>
-
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-md-12 stretch-card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Reservasi Baru (Dalam Proses)</h4>
+                                            <ul class="list-group">
+                                                <?php foreach($reservasiDalamProses as $listReservasi) { ?>
+                                                    <li class="list-group-item"><?= $listReservasi->nama_lengkap ?> - <?= $listReservasi->nama_treatment ?></li>
+                                                <?php } ?>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Catatan</h4>
-                                    <div class="list-wrapper pt-2">
-                                        <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-                                            <li>
-                                                <div class="form-check form-check-flat">
-                                                    <label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox">
-                                                        Meeting with Urban Team
-                                                    </label>
-                                                </div>
-                                                <i class="remove ti-close"></i>
-                                            </li>
-                                            <li class="completed">
-                                                <div class="form-check form-check-flat">
-                                                    <label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox" checked>
-                                                        Duplicate a project for new customer
-                                                    </label>
-                                                </div>
-                                                <i class="remove ti-close"></i>
-                                            </li>
-                                            <li>
-                                                <div class="form-check form-check-flat">
-                                                    <label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox">
-                                                        Project meeting with CEO
-                                                    </label>
-                                                </div>
-                                                <i class="remove ti-close"></i>
-                                            </li>
-                                            <li class="completed">
-                                                <div class="form-check form-check-flat">
-                                                    <label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox" checked>
-                                                        Follow up of team zilla
-                                                    </label>
-                                                </div>
-                                                <i class="remove ti-close"></i>
-                                            </li>
-                                            <li>
-                                                <div class="form-check form-check-flat">
-                                                    <label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox">
-                                                        Level up for Antony
-                                                    </label>
-                                                </div>
-                                                <i class="remove ti-close"></i>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="add-items d-flex mb-0 mt-2">
-                                        <input type="text" class="form-control todo-list-input" placeholder="Tambah Catatan Baru">
-                                        <button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i class="icon-circle-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                     <!-- content-wrapper ends -->
                     <!-- partial:partials/_footer.html -->
