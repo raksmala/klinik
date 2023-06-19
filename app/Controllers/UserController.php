@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\NotifikasiModel;
 use CodeIgniter\Controller;
 
 class UserController extends Controller
@@ -10,7 +11,9 @@ class UserController extends Controller
     public function index()
     {
         $model = new UserModel();
+        $notifikasiModel = new NotifikasiModel();
         $data['users'] = $model->findAll();
+        $data['notifikasi'] = $notifikasiModel->getData();
         echo view('user/index', $data);
     }
 
@@ -37,7 +40,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $model = new UserModel();
+        $notifikasiModel = new NotifikasiModel();
         $data['user'] = $model->find($id);
+        $data['notifikasi'] = $notifikasiModel->getData();
         echo view('user/edit', $data);
         
     }

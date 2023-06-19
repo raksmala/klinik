@@ -99,12 +99,15 @@
             toastr.success("<?= session()->getFlashdata('pesan') ?>")
         <?php endif; ?>
     </script>
-    <!-- <script>
-        @if(Session::has('success'))
-        toastr.success("{{ Session::get('success') }}")
-        @endif
-    </script> -->
-    <!-- content-wrapper ends -->
-    <!-- partial:partials/_footer.html -->
-    <?php $this->endSection(); ?>
 </div>
+<!-- page-body-wrapper ends -->
+
+<?php $this->endSection(); ?>
+
+<?php $this->section('script'); ?>
+<script>
+    $(document).ready(function() {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+<?php $this->endSection(); ?>

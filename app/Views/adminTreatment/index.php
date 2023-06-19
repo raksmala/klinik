@@ -53,34 +53,15 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script>
-        $('.delete').click(function() {
-            var siswaid = $(this).attr('data-id');
-            swal({
-                    title: "Yakin?",
-                    text: "Kamu akan menghapus data siswa dengan NIM " + siswaid + " ? ",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        window.location = "siswa/delete/" + siswaid,
-                            swal("Data Berhasil Di Hapus!", {
-                                icon: "success",
-                            });
-                    } else {
-                        swal("DATA TIDAK JADI DI HAPUS!");
-                    }
-                });
-        });
-    </script> -->
-    <!-- <script>
-        @if(Session::has('success'))
-        toastr.success("{{ Session::get('success') }}")
-        @endif
-    </script> -->
-    <!-- content-wrapper ends -->
-    <!-- partial:partials/_footer.html -->
-    <?php $this->endSection(); ?>
 </div>
+<!-- page-body-wrapper ends -->
+
+<?php $this->endSection(); ?>
+
+<?php $this->section('script'); ?>
+<script>
+    $(document).ready(function() {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+<?php $this->endSection(); ?>

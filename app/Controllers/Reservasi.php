@@ -6,23 +6,27 @@ use CodeIgniter\Controller;
 use App\Models\ReservasiModel;
 use App\Models\SendMessageModel;
 use App\Models\UserModel;
+use App\Models\NotifikasiModel;
 use Dompdf\Dompdf;
 
 class Reservasi extends Controller
 {
-    protected $reservasiModel, $sendMessageModel, $userModel;
+    protected $reservasiModel, $sendMessageModel, $userModel, $notifikasiModel;
 
     public function __construct(){
         $this->reservasiModel = new ReservasiModel();
         $this->sendMessageModel = new SendMessageModel();
         $this->userModel = new UserModel();
+        $this->notifikasiModel = new NotifikasiModel();
     }   
 
     public function index()
     {
         $getdata = $this->reservasiModel->getdata();
+        $notifikasi = $this->notifikasiModel->getData();
         $data = array(
             'dataReservasi' => $getdata,
+            'notifikasi' => $notifikasi,
         );
 
         return view('adminReservasi/index', $data);
@@ -30,6 +34,7 @@ class Reservasi extends Controller
 
     public function edit($id_reservasi)
     {
+        $data['notifikasi'] = $this->notifikasiModel->getData();
         $data['dataReservasi'] = $this->reservasiModel->find($id_reservasi);
         $data['user'] = $this->userModel->find($data['dataReservasi']['user_id']);
 
@@ -59,7 +64,7 @@ class Reservasi extends Controller
             $pesanStatus = 'dibatalkan';
         }
 
-        $message = "Halo " . $user['nama_lengkap'] . ",\nStatus pembayaran anda *" . $pesanStatus . "*.\n\nTerima kasih.\nAdiva Beauty Skin";
+        $message = "Halo " . $user['nama_lengkap'] . "! Reservasi treatment anda pada tanggal " . date('d-m-Y', strtotime($reservasi['tgl_reservasi'])) . " sesi " . $reservasi['sesi_reservasi'] . " telah terkonfirmasi. Silahkan datang 15 menit sebelum tindakan treatment dimulai, jika berhalangan hadir segera hubungi Admin. Terima kasih.\n- Adiva Beauty Skin -";
         $send = $this->sendMessageModel->kirimPesan($user['nomor_telepon'], $message);
         $send = json_decode($send);
         $res_detail = $send->detail;

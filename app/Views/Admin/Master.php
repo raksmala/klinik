@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.1/select2.min.css" rel="stylesheet" />
     <style>
         .dataTables_wrapper .dataTables_paginate .paginate_button {
             padding: 0px !important;
@@ -63,6 +64,24 @@
                 </button>
 
                 <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notifDropdown" href="#" data-toggle="dropdown">
+                            <i class="icon-bell mx-0"></i>
+                            <?php if (count($notifikasi) > 0) { ?>
+                                <span class="count"></span>
+                            <?php } ?>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notifDropdown">
+                            <p class="mb-0 font-weight-normal float-left dropdown-header">Pemberitahuan</p>
+                            <?php foreach ($notifikasi as $notif) { ?>
+                                <a class="dropdown-item preview-item bg-info text-white" href="<?= base_url('Admin/Notifikasi') . '/' . $notif->id_notifikasi ?>">
+                                    <p class="font-weight-light mb-0">
+                                        <span class="font-weight-bold"><?= $notif->nama_lengkap ?></span> telah melakukan reservasi <span class="font-weight-bold"><?= $notif->nama_treatment ?></span>
+                                    </p>
+                                </a>
+                            <?php } ?>
+                        </div>
+                    </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="dropdown-item" href="<?= base_url('logout') ?>">
                             <i class="ti-power-off text-primary"></i>
@@ -83,6 +102,20 @@
     <!-- MAIN -->
     <!-- container-scroller -->
 
+    <!-- End custom js for this page-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.1/select2.min.js" defer></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#tablesiswa').DataTable();
+        });
+    </script>
 
     <!-- plugins:js -->
     <script src="<?= base_url() ?>/template/vendors/js/vendor.bundle.base.js"></script>
@@ -104,21 +137,8 @@
     <!-- Custom js for this page-->
     <script src="<?= base_url() ?>/template/js/dashboard.js"></script>
     <script src="<?= base_url() ?>/template/js/Chart.roundedBarCharts.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- End custom js for this page-->
-    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#tablesiswa').DataTable();
-        });
-    </script>
+
     <?= $this->renderSection('script') ?>
 </body>
 

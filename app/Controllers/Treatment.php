@@ -4,22 +4,26 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\TreatmentModel;
+use App\Models\NotifikasiModel;
 use Dompdf\Dompdf;
 
 class Treatment extends Controller
 {
-    protected $mtreatment;
+    protected $treatmentModel, $notifikasiModel;
     protected $table = "treatment";
     public function __construct()
     {
         $this->treatmentModel = new TreatmentModel();
+        $this->notifikasiModel = new NotifikasiModel();
     }
 
     public function index()
     {
         $getdata = $this->treatmentModel->getdata();
+        $notifikasi = $this->notifikasiModel->getData();
         $data = array(
             'dataTreatment' => $getdata,
+            'notifikasi' => $notifikasi,
         );
 
         return view('adminTreatment/index', $data);
@@ -65,6 +69,7 @@ class Treatment extends Controller
 
     public function edit($id)
     {
+        $data['notifikasi'] = $this->notifikasiModel->getData();
         $data['dataTreatment'] = $this->treatmentModel->find($id);
 
         return view('adminTreatment/edit', $data);

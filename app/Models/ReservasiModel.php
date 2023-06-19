@@ -56,6 +56,11 @@ class ReservasiModel extends Model
         return $query->getResult();
     }
 
+    public function getTreatment($treatment) {
+        $query = $this->db->query("SELECT * FROM reservasi WHERE nama_treatment = '$treatment' AND is_deleted IS NULL");
+        return $query->getResult();
+    }
+
     public function totalReservasi() {
         $query = $this->db->query("SELECT * FROM reservasi WHERE is_deleted IS NULL");
         return $query->getNumRows();

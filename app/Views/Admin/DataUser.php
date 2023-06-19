@@ -92,3 +92,13 @@
     <!-- partial:partials/_footer.html -->
     <?php $this->endSection(); ?>
 </div>
+
+<?php $this->endSection(); ?>
+
+<?php $this->section('script'); ?>
+<script>
+    $(document).ready(function() {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+<?php $this->endSection(); ?>

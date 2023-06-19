@@ -1,0 +1,64 @@
+CRITICAL - 2023-06-19 05:39:29 --> count(): Argument #1 ($value) must be of type Countable|array, null given
+in APPPATH\Views\Admin\Master.php on line 69.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->render('Admin/Master', [], true)
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('user/index', [], true)
+ 5 APPPATH\Controllers\UserController.php(14): view('user/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\UserController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-19 06:23:32 --> View themes, no current section.
+in SYSTEMPATH\View\View.php on line 394.
+ 1 APPPATH\Views\adminReservasi\index.php(113): CodeIgniter\View\View->endSection()
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\adminReservasi\\index.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('adminReservasi/index', [], true)
+ 5 APPPATH\Controllers\Reservasi.php(32): view('adminReservasi/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Reservasi->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reservasi))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-19 06:25:08 --> Undefined property: stdClass::$detail
+in APPPATH\Controllers\Reservasi.php on line 70.
+ 1 APPPATH\Controllers\Reservasi.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$detail', 'APPPATH\\Controllers\\Reservasi.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Reservasi->update('34')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reservasi))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-19 06:27:05 --> Undefined property: stdClass::$detail
+in APPPATH\Controllers\Reservasi.php on line 70.
+ 1 APPPATH\Controllers\Reservasi.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$detail', 'APPPATH\\Controllers\\Reservasi.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Reservasi->update('34')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reservasi))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-19 06:27:11 --> Undefined property: stdClass::$detail
+in APPPATH\Controllers\Reservasi.php on line 70.
+ 1 APPPATH\Controllers\Reservasi.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$detail', 'APPPATH\\Controllers\\Reservasi.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Reservasi->update('34')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reservasi))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-19 06:27:17 --> Undefined property: stdClass::$detail
+in APPPATH\Controllers\Reservasi.php on line 70.
+ 1 APPPATH\Controllers\Reservasi.php(70): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$detail', 'APPPATH\\Controllers\\Reservasi.php', 70)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Reservasi->update('34')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reservasi))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-19 06:33:19 --> Undefined array key "sesi"
+in APPPATH\Controllers\Reservasi.php on line 67.
+ 1 APPPATH\Controllers\Reservasi.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "sesi"', 'APPPATH\\Controllers\\Reservasi.php', 67)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Reservasi->update('32')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reservasi))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')

@@ -125,6 +125,7 @@ class Home extends BaseController
 
     public function Laporan()
     {
+        $data['notifikasi'] = $this->notifikasiModel->getData();
         $data['treatment'] = $this->treatmentModel->getdata();
         echo view('Admin/Laporan', $data);
     }
@@ -171,23 +172,25 @@ class Home extends BaseController
     public function export() {
         $tanggalAwal = $this->request->getPost('tanggal_awal');
         $tanggalAkhir = $this->request->getPost('tanggal_akhir');
-        $byTreatment = $this->request->getPost('filter');
+        $filterBy = $this->request->getPost('filter');
         $data = [];
         $reservasi = [];
         $namaTreatment = '';
-        if($byTreatment == 'ya') {
+        if($filterBy == 'treatment') {
             $namaTreatment = $this->request->getPost('nama_treatment');
-            $reservasi = $this->reservasiModel->getDataTreatment($tanggalAwal, $tanggalAkhir, $namaTreatment);
-        } else if($byTreatment == 'tidak') {
+            $reservasi = $this->reservasiModel->getTreatment($namaTreatment);
+            $data['treatment'] = $namaTreatment;
+            $data['periode'] = ' - ';
+        } else if($filterBy == 'tanggal') {
             $reservasi = $this->reservasiModel->getDataRange($tanggalAwal, $tanggalAkhir);
+            // change format from yyyy-mm-dd to dd-mm-yyyy
+            $tanggalAwal = date('d F Y', strtotime($tanggalAwal));
+            $tanggalAkhir = date('d F Y', strtotime($tanggalAkhir));
+            $data['treatment'] = 'Semua Treatment';
+            $data['periode'] = $tanggalAwal . ' - ' . $tanggalAkhir;
         }
 
         $data['dataReservasi'] = $reservasi;
-        // change format from yyyy-mm-dd to dd-mm-yyyy
-        $tanggalAwal = date('d F Y', strtotime($tanggalAwal));
-        $tanggalAkhir = date('d F Y', strtotime($tanggalAkhir));
-        $data['periode'] = $tanggalAwal . ' - ' . $tanggalAkhir;
-        $data['treatment'] = $byTreatment == 'ya' ? $namaTreatment : 'Semua';
 
         // filename
         $filename = 'reservasi_' . date('YmdHis') . '.pdf';
