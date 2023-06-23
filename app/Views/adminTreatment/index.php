@@ -19,16 +19,16 @@
                                     <table id="tablesiswa" class="display expandable-table" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>ID Treatment</th>
+                                                <th>No</th>
                                                 <th>Nama Treatment</th>
                                                 <th>Jenis Treatment</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($dataTreatment as $treatment) : ?>
+                                            <?php foreach ($dataTreatment as $key => $treatment) : ?>
                                                 <tr>
-                                                    <td><?= $treatment->id_treatment ?></td>
+                                                    <td><?= ++$key ?>.</td>
                                                     <td><?= $treatment->nama_treatment ?></td>
                                                     <td><?= $treatment->jenis_treatment ?></td>
                                                     <td>

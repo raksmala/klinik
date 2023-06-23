@@ -82,8 +82,8 @@ $routes->post('Admin/Reservasi/update/(:num)', 'Reservasi::update/$1');
 $routes->get('Admin/Notifikasi/(:num)', 'Home::notifikasi/$1');
 
 // Export File Pdf
+$routes->get('Admin/User/laporan-pdf', 'UserController::export');
 $routes->get('Admin/Treatment/laporan-pdf', 'Treatment::export');
-$routes->get('Admin/Reservasi/laporan-pdf', 'Reservasi::export');
 $routes->post('Admin/Laporan/export', 'Home::export');
 
 // Panggil Ajax Tanggal

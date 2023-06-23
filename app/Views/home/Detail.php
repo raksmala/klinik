@@ -13,7 +13,10 @@
 <body>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/Treatment/Chemical">Chemical Peeling</a></li>
+            <?php
+                $url = str_replace(' ', '-', $detail->jenis_treatment);
+            ?>
+            <li class="breadcrumb-item"><a href="/home/Treatment/<?= $url ?>"><?= $detail->jenis_treatment ?></a></li>
             <li class="breadcrumb-item active" aria-current="page">Detail</li>
         </ol>
     </nav>

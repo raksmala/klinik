@@ -32,7 +32,7 @@
                         <td><?= $res->tgl_reservasi ?></td>
                         <td><?= $res->sesi_reservasi ?></td>
                         <td>Rp. <?= number_format($res->total, 0, '', '.') ?></td>
-                        <td><?= $res->status_pembayaran ?></td>
+                        <td><?= $res->status_reservasi ?></td>
                     </tr>
                 <?php } ?>
             </tbody>

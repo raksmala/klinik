@@ -5,11 +5,15 @@ namespace App\Controllers;
 use App\Models\UserModel;
 use App\Models\NotifikasiModel;
 use CodeIgniter\Controller;
+use Dompdf\Dompdf;
 
 class UserController extends Controller
 {
     public function index()
     {
+        $isAdmin = $this->checkLogin();
+        if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+        
         $model = new UserModel();
         $notifikasiModel = new NotifikasiModel();
         $data['users'] = $model->findAll();
@@ -19,6 +23,9 @@ class UserController extends Controller
 
     public function create()
     {
+        $isAdmin = $this->checkLogin();
+        if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+        
         echo view('user/create');
     }
 
@@ -39,6 +46,9 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        $isAdmin = $this->checkLogin();
+        if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+        
         $model = new UserModel();
         $notifikasiModel = new NotifikasiModel();
         $data['user'] = $model->find($id);
@@ -69,5 +79,29 @@ class UserController extends Controller
         $model = new UserModel();
         $model->delete($id);
         return redirect()->to(base_url('/Admin/User'));
+    }
+
+    public function export()
+    {
+        $model = new UserModel();
+        $data['users'] = $model->findAll();
+
+        // filename
+        $filename = 'user_' . date('YmdHis') . '.pdf';
+        
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+
+        // load HTML content
+        $dompdf->loadHtml(view('user/export', $data));
+
+        // (optional) setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // render html as PDF
+        $dompdf->render();
+
+        // output the generated pdf
+        $dompdf->stream($filename);
     }
 }

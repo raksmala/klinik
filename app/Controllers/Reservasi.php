@@ -8,6 +8,7 @@ use App\Models\SendMessageModel;
 use App\Models\UserModel;
 use App\Models\NotifikasiModel;
 use Dompdf\Dompdf;
+use DateTime;
 
 class Reservasi extends Controller
 {
@@ -22,6 +23,9 @@ class Reservasi extends Controller
 
     public function index()
     {
+        $isAdmin = $this->checkLogin();
+        if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+        
         $getdata = $this->reservasiModel->getdata();
         $notifikasi = $this->notifikasiModel->getData();
         $data = array(
@@ -34,6 +38,9 @@ class Reservasi extends Controller
 
     public function edit($id_reservasi)
     {
+        $isAdmin = $this->checkLogin();
+        if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+        
         $data['notifikasi'] = $this->notifikasiModel->getData();
         $data['dataReservasi'] = $this->reservasiModel->find($id_reservasi);
         $data['user'] = $this->userModel->find($data['dataReservasi']['user_id']);
@@ -47,12 +54,12 @@ class Reservasi extends Controller
         $user = $this->userModel->find($reservasi['user_id']);
 
         $data = [
-            'status_pembayaran' => $this->request->getPost('status_pembayaran'),
+            'status_reservasi' => $this->request->getPost('status_reservasi'),
         ];
 
         $this->reservasiModel->updateReservasi($id_reservasi, $data);
         
-        $status = $this->request->getPost('status_pembayaran');
+        $status = $this->request->getPost('status_reservasi');
         $pesanStatus = '';
         if($status == 'Dalam Proses') {
             $pesanStatus = 'dalam proses';
@@ -64,6 +71,17 @@ class Reservasi extends Controller
             $pesanStatus = 'dibatalkan';
         }
 
+        // set jadwal
+        $jamReservasi = substr($reservasi['sesi_reservasi'], 0, 5);
+        $jamReservasi = str_replace('.', ':', $jamReservasi);
+        // current is gmt+7 convert to gmt+0
+        $jamReservasi = date('H:i', strtotime($jamReservasi) - 8 * 3600);
+        $dateString = $reservasi['tgl_reservasi'] . ' ' . $jamReservasi . ':00';
+        $datetime = new DateTime($dateString);
+
+        // convert ke unix timestamp
+        $timestamp = $datetime->getTimestamp();
+
         $message = "Halo " . $user['nama_lengkap'] . "! Reservasi treatment anda pada tanggal " . date('d-m-Y', strtotime($reservasi['tgl_reservasi'])) . " sesi " . $reservasi['sesi_reservasi'] . " telah terkonfirmasi. Silahkan datang 15 menit sebelum tindakan treatment dimulai, jika berhalangan hadir segera hubungi Admin. Terima kasih.\n- Adiva Beauty Skin -";
         $send = $this->sendMessageModel->kirimPesan($user['nomor_telepon'], $message);
         $send = json_decode($send);
@@ -71,10 +89,16 @@ class Reservasi extends Controller
         $res_status = $send->status;
         
         if ($res_status == true && $res_detail == "success! message in queue") {
-            session()->setFlashdata('pesan', 'Status pembayaran berhasil diubah');
+            // kirim pesan h-1 jam
+            if($status == 'Proses') {
+                $messageJadwal = "Halo " . $user['nama_lengkap'] . "! Hari ini adalah jadwal reservasi treatment anda. Treatment akan dilakukan pada pukul " . $reservasi['sesi_reservasi'] . ", Silahkan datang 15 menit sebelum treatment dimulai. Apabila berhalangan hadir mohon segera konfirmasi admin, jika melebihi sesi yang telah ditentukan maka reservasi treatment anda akan kami batalkan. Terimakasih.\n- Admin Adiva Beauty Skin -";
+                $this->sendMessageModel->kirimPesanJadwal($user['nomor_telepon'], $messageJadwal, $timestamp);
+            }
+
+            session()->setFlashdata('pesan', 'Status reservasi berhasil diubah');
             return redirect()->to('/Admin/Reservasi');
         } else {
-            session()->setFlashdata('pesan', 'Status pembayaran gagal diubah');
+            session()->setFlashdata('pesan', 'Status reservasi gagal diubah');
             return redirect()->to('/Admin/Reservasi/edit/' . $id_reservasi . '');
         }
     }

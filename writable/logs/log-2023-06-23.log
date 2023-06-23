@@ -1,0 +1,73 @@
+CRITICAL - 2023-06-23 08:40:17 --> Call to undefined function App\Controllers\checkLogin()
+in APPPATH\Controllers\Home.php on line 108.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->Home()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-23 08:40:51 --> Undefined constant "App\Controllers\anjay"
+in APPPATH\Controllers\Home.php on line 218.
+ 1 APPPATH\Controllers\Home.php(108): App\Controllers\Home->checkLogin()
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->Home()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-23 08:40:52 --> Undefined constant "App\Controllers\anjay"
+in APPPATH\Controllers\Home.php on line 218.
+ 1 APPPATH\Controllers\Home.php(108): App\Controllers\Home->checkLogin()
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->Home()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-23 08:43:48 --> Call to undefined method App\Controllers\UserController::checkLogin()
+in APPPATH\Controllers\UserController.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\UserController->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-23 08:52:08 --> Failed to parse time string (2023-06-24 12.45 - 15.00:00) at position 17 (-): Unexpected character
+in APPPATH\Controllers\Reservasi.php on line 78.
+ 1 APPPATH\Controllers\Reservasi.php(78): DateTime->__construct('2023-06-24 12.45 - 15.00:00')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Reservasi->update('34')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reservasi))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-23 08:55:48 --> session_start(): Failed to decode session object. Session has been destroyed
+in SYSTEMPATH\Session\Session.php on line 928.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'session_start(): Failed to decode session object. Session has been destroyed', 'SYSTEMPATH\\Session\\Session.php', 928)
+ 2 SYSTEMPATH\Session\Session.php(928): session_start()
+ 3 SYSTEMPATH\Session\Session.php(250): CodeIgniter\Session\Session->startSession()
+ 4 SYSTEMPATH\Config\Services.php(674): CodeIgniter\Session\Session->start()
+ 5 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session(Object(Config\App), false)
+ 6 SYSTEMPATH\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('session', [...])
+ 7 SYSTEMPATH\Config\Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance('session', null)
+ 8 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::session()
+ 9 SYSTEMPATH\Common.php(979): CodeIgniter\Config\BaseService::__callStatic('session', [])
+10 SYSTEMPATH\Controller.php(189): session()
+11 APPPATH\Controllers\Reservasi.php(26): CodeIgniter\Controller->checkLogin()
+12 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Reservasi->index()
+13 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Reservasi))
+14 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+15 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-23 09:05:29 --> Class "App\Controllers\Dompdf" not found
+in APPPATH\Controllers\UserController.php on line 92.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\UserController->export()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+CRITICAL - 2023-06-23 09:10:01 --> Invalid file: "Admin/user_pdf.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Admin/user_pdf.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('Admin/user_pdf', [], true)
+ 3 APPPATH\Controllers\Treatment.php(153): view('Admin/user_pdf', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Treatment->export()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Treatment))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')

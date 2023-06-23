@@ -19,6 +19,9 @@ class Treatment extends Controller
 
     public function index()
     {
+        $isAdmin = $this->checkLogin();
+        if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+        
         $getdata = $this->treatmentModel->getdata();
         $notifikasi = $this->notifikasiModel->getData();
         $data = array(
@@ -31,6 +34,9 @@ class Treatment extends Controller
 
     public function create()
     {
+        $isAdmin = $this->checkLogin();
+        if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+        
         echo view('adminTreatment/create');
     }
 
@@ -69,6 +75,9 @@ class Treatment extends Controller
 
     public function edit($id)
     {
+        $isAdmin = $this->checkLogin();
+        if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+        
         $data['notifikasi'] = $this->notifikasiModel->getData();
         $data['dataTreatment'] = $this->treatmentModel->find($id);
 
@@ -133,6 +142,7 @@ class Treatment extends Controller
     public function export()
     {
         $data['dataTreatment'] = $this->treatmentModel->getdata();
+
         // filename
         $filename = 'treatment_' . date('YmdHis') . '.pdf';
         

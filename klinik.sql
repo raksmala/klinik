@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 16, 2023 at 11:31 AM
+-- Generation Time: Jun 23, 2023 at 09:11 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.1
 
@@ -78,9 +78,9 @@ CREATE TABLE `notifikasi` (
 --
 
 INSERT INTO `notifikasi` (`id_notifikasi`, `id_reservasi`, `is_readed`, `is_deleted`) VALUES
-(3, 32, 0, NULL),
+(3, 32, 1, NULL),
 (4, 33, 1, NULL),
-(5, 34, 0, NULL);
+(5, 34, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE `reservasi` (
   `nomor_telepon` varchar(15) NOT NULL,
   `nama_treatment` varchar(225) NOT NULL,
   `total` int(20) NOT NULL,
-  `status_pembayaran` enum('Dalam Proses','Proses','Batal','Selesai') NOT NULL,
+  `status_reservasi` enum('Dalam Proses','Proses','Batal','Selesai') NOT NULL,
   `user_id` int(11) NOT NULL,
   `is_deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -106,7 +106,7 @@ CREATE TABLE `reservasi` (
 -- Dumping data for table `reservasi`
 --
 
-INSERT INTO `reservasi` (`id_reservasi`, `tgl_reservasi`, `sesi_reservasi`, `nama_lengkap`, `alamat`, `nomor_telepon`, `nama_treatment`, `total`, `status_pembayaran`, `user_id`, `is_deleted`) VALUES
+INSERT INTO `reservasi` (`id_reservasi`, `tgl_reservasi`, `sesi_reservasi`, `nama_lengkap`, `alamat`, `nomor_telepon`, `nama_treatment`, `total`, `status_reservasi`, `user_id`, `is_deleted`) VALUES
 (6, '2023-06-10', '15.00 - 17.00', 'B', 'Jalan ditempat', '0123456789', 'Facial Basic', 55000, 'Dalam Proses', 54, NULL),
 (7, '2023-06-10', '08.00 - 10.00', 'B', 'Jalan ditempat', '0123456789', 'Facial Basic', 55000, 'Dalam Proses', 54, NULL),
 (8, '2023-06-10', '15.00 - 17.00', 'B', 'Jalan ditempat', '0123456789', 'Facial Basic', 55000, 'Dalam Proses', 54, NULL),
@@ -122,10 +122,10 @@ INSERT INTO `reservasi` (`id_reservasi`, `tgl_reservasi`, `sesi_reservasi`, `nam
 (24, '2023-06-15', '10.00 - 12.00', 'F', 'Asdasdas', '123123', 'Facial Basic', 55000, 'Dalam Proses', 60, NULL),
 (25, '2023-06-15', '10.00 - 12.00', 'F', 'Asdasdas', '123123', 'Facial Basic', 55000, 'Dalam Proses', 60, NULL),
 (26, '2023-06-15', '10.00 - 12.00', 'F', 'Asdasdas', '123123', 'Facial Basic', 55000, 'Dalam Proses', 60, NULL),
-(27, '2023-06-16', '08.00 - 10.00', 'F', 'Asdasdas', '123123', 'Facial Gold Snail Whitening', 56000, 'Dalam Proses', 60, NULL),
-(32, '2023-06-17', '15.00 - 17.00', 'F', 'Asdasdas', '123123', 'Facial Ice Globe Roller (Include Masker WetP)', 55000, 'Dalam Proses', 60, NULL),
-(33, '2023-06-17', '15.00 - 17.00', 'F', 'Asdasdas', '123123', 'Facial Gold Snail Whitening', 56000, 'Dalam Proses', 60, NULL),
-(34, '2023-06-18', '12.45 - 15.00', 'F', 'Asdasdas', '123123', 'Double Chemical Peeling (Whitening / Acne)', 55000, 'Dalam Proses', 60, NULL);
+(27, '2023-06-16', '08.00 - 10.00', 'F', 'Asdasdas', '123123', 'Facial Gold Snail Whitening', 56000, 'Proses', 60, NULL),
+(32, '2023-06-17', '15.00 - 17.00', 'F', 'Asdasdas', '123123', 'Facial Ice Globe Roller (Include Masker WetP)', 55000, 'Batal', 60, NULL),
+(33, '2023-06-17', '15.00 - 17.00', 'F', 'Asdasdas', '123123', 'Facial Gold Snail Whitening', 56000, 'Proses', 60, NULL),
+(34, '2023-06-24', '12.45 - 15.00', 'F', 'Asdasdas', '123123', 'Double Chemical Peeling (Whitening / Acne)', 55000, 'Proses', 60, NULL);
 
 -- --------------------------------------------------------
 
@@ -311,7 +311,7 @@ INSERT INTO `user` (`user_id`, `nama_lengkap`, `alamat`, `nomor_telepon`, `usern
 (53, 'b', 'jalan jalan', '0123456789', 'b', '8068c76c7376bc08e2836ab26359d4a4', 'Admin'),
 (54, 'c', 'jalan ditempat', '082245874096', 'c', '8068c76c7376bc08e2836ab26359d4a4', 'Admin'),
 (57, 'd', 'jalannya nih', '0123456789', 'd', '8068c76c7376bc08e2836ab26359d4a4', 'Pelanggan'),
-(60, 'f', 'asdasdas', '123123', 'f', '8068c76c7376bc08e2836ab26359d4a4', 'Pelanggan');
+(60, 'f', 'asdasdas', '082245874096', 'f', '8068c76c7376bc08e2836ab26359d4a4', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -333,7 +333,8 @@ ALTER TABLE `migrations`
 -- Indexes for table `notifikasi`
 --
 ALTER TABLE `notifikasi`
-  ADD PRIMARY KEY (`id_notifikasi`);
+  ADD PRIMARY KEY (`id_notifikasi`),
+  ADD KEY `notifikasi_ibfk_1` (`id_reservasi`);
 
 --
 -- Indexes for table `reservasi`
@@ -397,6 +398,12 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `notifikasi`
+--
+ALTER TABLE `notifikasi`
+  ADD CONSTRAINT `notifikasi_ibfk_1` FOREIGN KEY (`id_reservasi`) REFERENCES `reservasi` (`id_reservasi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `reservasi`

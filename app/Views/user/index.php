@@ -10,6 +10,7 @@
                     <div class="card-body">
                         <p class="card-title">Data User</p>
                         <div class="col-auto">
+                            <a href="User/laporan-pdf" class="btn btn-info my-3" target="_blank">Export File Pdf</a>
                             <!-- <a href="/siswa/exportexcel" class="btn btn-primary my-3" target="_blank">Download File Excel</a>
                             <a href="/siswa/importexcel" class="btn btn-secondary my-3" data-toggle="modal" data-target="#exampleModal">Upload Data User</a>
                             <a href="siswa/exportpdf" class="btn btn-info my-3" target="_blank">Download File Pdf</a> -->
@@ -21,7 +22,7 @@
                                     <table id="tablesiswa" class="display expandable-table" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>User ID</th>
+                                                <th>No</th>
                                                 <th>Nama Lengkap</th>
                                                 <th>Username</th>
                                                 <th>Alamat</th>

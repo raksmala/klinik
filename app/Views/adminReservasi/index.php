@@ -10,7 +10,6 @@
                     <div class="card-body">
                         <p class="card-title">Data Reservasi</p>
                         <div class="col-auto">
-                            <a href="Reservasi/laporan-pdf" class="btn btn-info my-3" target="_blank">Export File Pdf</a>
                             <div class="row">
                                 <div class="col-12">
                                     <a href="<?= base_url('user/create') ?>" class="bi bi-plus blue-color float-right"></a>
@@ -27,7 +26,7 @@
                                                 <th>Alamat</th>
                                                 <th>Treatment</th>
                                                 <th>Total Pembayaran</th>
-                                                <th>Status Pembayaran</th>
+                                                <th>Status Reservasi</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -42,7 +41,7 @@
                                                     <td><?= $reservasi->alamat ?></td>
                                                     <td><?= $reservasi->nama_treatment ?></td>
                                                     <td><?= $reservasi->total ?></td>
-                                                    <td><?= $reservasi->status_pembayaran ?></td>
+                                                    <td><?= $reservasi->status_reservasi ?></td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                             <a href="<?= base_url('/Admin/Reservasi/edit') . '/' . $reservasi->id_reservasi ?>" class="btn btn-primary" type="button">Edit</a>

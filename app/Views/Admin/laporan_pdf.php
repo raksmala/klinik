@@ -109,7 +109,7 @@
                 <td><?= $reservasi->alamat ?></td>
                 <td><?= $reservasi->nama_treatment ?></td>
                 <td><?= $reservasi->total ?></td>
-                <td><?= $reservasi->status_pembayaran ?></td>
+                <td><?= $reservasi->status_reservasi ?></td>
             </tr>
         <?php } ?>
     </tbody>

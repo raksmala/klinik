@@ -22,21 +22,21 @@
         width: 100%;
     }
 
-    .treatment-table {
+    .user-table {
         margin-top: 1rem;
         border-collapse: collapse;
         border: 1px solid black;
     }
 
-    .treatment-table thead th,
-    .treatment-table tbody td {
+    .user-table thead th,
+    .user-table tbody td {
         padding: 0.5rem;
         border-top: 1px solid black;
         border-bottom: 1px solid black;
     }
 
-    .treatment-table th,
-    .treatment-table td {
+    .user-table th,
+    .user-table td {
         padding: 0.5rem;
         border-right: 1px solid black;
     }
@@ -45,7 +45,7 @@
 <table class="table center-table">
     <tbody>
         <tr>
-            <td>LAPORAN DATA TREATMENT</td>
+            <td>LAPORAN DATA USER</td>
         </tr>
         <tr>
             <td>KLINIK ADIVA BEAUTY SKIN</td>
@@ -56,20 +56,26 @@
     </tbody>
 </table>
 
-<table class="table center-table treatment-table">
+<table class="table center-table user-table">
     <thead>
         <tr>
             <th>No</th>
-            <th>Nama Treatment</th>
-            <th>Jenis Treatment</th>
+            <th>Nama Lengkap</th>
+            <th>Username</th>
+            <th>Alamat</th>
+            <th>No.Telepon</th>
+            <th>Level User</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($dataTreatment as $key => $treatment) : ?>
+        <?php foreach ($users as $key => $user) : ?>
             <tr>
                 <td><?= ++$key ?>.</td>
-                <td><?= $treatment->nama_treatment ?></td>
-                <td><?= $treatment->jenis_treatment ?></td>
+                <td><?= $user['nama_lengkap'] ?></td>
+                <td><?= $user['username'] ?></td>
+                <td><?= $user['alamat'] ?></td>
+                <td><?= $user['nomor_telepon'] ?></td>
+                <td><?= $user['level_user'] ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

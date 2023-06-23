@@ -105,6 +105,9 @@ class Home extends BaseController
 
     public function Home()
     {
+        $isAdmin = $this->checkLogin();
+        if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+
         $data['totalUser'] = $this->userModel->totalUser();
         $data['totalReservasi'] = $this->reservasiModel->totalReservasi();
         $data['totalTreatment'] = $this->treatmentModel->totalTreatment();
@@ -125,6 +128,9 @@ class Home extends BaseController
 
     public function Laporan()
     {
+        $isAdmin = $this->checkLogin();
+        if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+        
         $data['notifikasi'] = $this->notifikasiModel->getData();
         $data['treatment'] = $this->treatmentModel->getdata();
         echo view('Admin/Laporan', $data);
@@ -145,7 +151,7 @@ class Home extends BaseController
             'nomor_telepon' => $this->request->getPost('nomor_telepon'),
             'nama_treatment' => $this->request->getPost('nama_treatment'),
             'total' => $this->request->getPost('total'),
-            'status_pembayaran' => 'Dalam Proses',
+            'status_reservasi' => 'Dalam Proses',
             'user_id' => $this->request->getPost('user_id'),
         ];
         // remove Rp. and .
@@ -169,7 +175,8 @@ class Home extends BaseController
         return json_encode($sesi);
     }
 
-    public function export() {
+    public function export()
+    {
         $tanggalAwal = $this->request->getPost('tanggal_awal');
         $tanggalAkhir = $this->request->getPost('tanggal_akhir');
         $filterBy = $this->request->getPost('filter');

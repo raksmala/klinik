@@ -11,7 +11,7 @@ class ReservasiModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $protectFields = true;
-    protected $allowedFields = ['tgl_reservasi', 'sesi_reservasi', 'nama_lengkap', 'alamat', 'nomor_telepon', 'nama_treatment', 'total', 'status_pembayaran', 'user_id', 'id_deleted'];
+    protected $allowedFields = ['tgl_reservasi', 'sesi_reservasi', 'nama_lengkap', 'alamat', 'nomor_telepon', 'nama_treatment', 'total', 'status_reservasi', 'user_id', 'id_deleted'];
 
     public function getdata()
     {
@@ -67,7 +67,7 @@ class ReservasiModel extends Model
     }
 
     public function reservasiDalamProses() {
-        $query = $this->db->query("SELECT * FROM reservasi WHERE status_pembayaran = 'Dalam Proses' AND is_deleted IS NULL ORDER BY tgl_reservasi DESC");
+        $query = $this->db->query("SELECT * FROM reservasi WHERE status_reservasi = 'Dalam Proses' AND is_deleted IS NULL ORDER BY tgl_reservasi DESC");
         return $query->getResult();
     }
 }

@@ -24,12 +24,12 @@
                     <input type="text" class="form-control" name="nama_treatment" id="nama_treatment" placeholder="Nama Treatment" autofocus readonly disabled value="<?= $dataReservasi['nama_treatment'] ?>">
                 </div>
                 <div class="form-group">
-                    <label for="status_pembayaran">Status Pembayaran</label>
-                    <select class="form-control" name="status_pembayaran" id="status_pembayaran" required>
-                        <option value="Dalam Proses" <?php if ($dataReservasi['status_pembayaran'] == 'Dalam Proses') echo 'selected' ?>>Dalam Proses</option>
-                        <option value="Proses" <?php if ($dataReservasi['status_pembayaran'] == 'Proses') echo 'selected' ?>>Proses</option>
-                        <option value="Selesai" <?php if ($dataReservasi['status_pembayaran'] == 'Selesai') echo 'selected' ?>>Selesai</option>
-                        <option value="Batal" <?php if ($dataReservasi['status_pembayaran'] == 'Batal') echo 'selected' ?>>Batal</option>
+                    <label for="status_reservasi">Status Reservasi</label>
+                    <select class="form-control" name="status_reservasi" id="status_reservasi" required>
+                        <option value="Dalam Proses" <?php if ($dataReservasi['status_reservasi'] == 'Dalam Proses') echo 'selected' ?>>Dalam Proses</option>
+                        <option value="Proses" <?php if ($dataReservasi['status_reservasi'] == 'Proses') echo 'selected' ?>>Proses</option>
+                        <option value="Selesai" <?php if ($dataReservasi['status_reservasi'] == 'Selesai') echo 'selected' ?>>Selesai</option>
+                        <option value="Batal" <?php if ($dataReservasi['status_reservasi'] == 'Batal') echo 'selected' ?>>Batal</option>
                     </select>
                 </div>
 

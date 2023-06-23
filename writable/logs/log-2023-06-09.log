@@ -1360,7 +1360,7 @@ Stack trace:
 #11 {main}
 CRITICAL - 2023-06-09 13:34:51 --> Column 'sesi_reservasi' cannot be null
 in SYSTEMPATH\Database\BaseConnection.php on line 645.
- 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `reservasi` (`tgl_reservasi`, `sesi_reservasi`, `nama_lengkap`, `alamat`, `nomor_telepon`, `nama_treatment`, `total`, `status_pembayaran`, `user_id`) VALUES (:tgl_reservasi:, :sesi_reservasi:, :nama_lengkap:, :alamat:, :nomor_telepon:, :nama_treatment:, :total:, :status_pembayaran:, :user_id:)', [...], false)
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `reservasi` (`tgl_reservasi`, `sesi_reservasi`, `nama_lengkap`, `alamat`, `nomor_telepon`, `nama_treatment`, `total`, `status_reservasi`, `user_id`) VALUES (:tgl_reservasi:, :sesi_reservasi:, :nama_lengkap:, :alamat:, :nomor_telepon:, :nama_treatment:, :total:, :status_reservasi:, :user_id:)', [...], false)
  2 APPPATH\Models\ReservasiModel.php(18): CodeIgniter\Database\BaseBuilder->insert([...])
  3 APPPATH\Controllers\Home.php(110): App\Models\ReservasiModel->insertData([...])
  4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->simpan()
@@ -1934,7 +1934,8 @@ in APPPATH\Views\adminTreatment\edit.php on line 53.
  8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
-CRITICAL - 2023-06-09 15:58:40 --> syntax error, unexpected single-quoted string "] ?>">", expecting "," or ";"
+CRITICAL - 2023-06-09 15:58:40 --> syntax error, unexpected single-quoted string "] ?>">
+", expecting "," or ";"
 in APPPATH\Views\adminTreatment\edit.php on line 92.
  1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
  2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('adminTreatment/edit', [], true)

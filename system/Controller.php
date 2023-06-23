@@ -183,4 +183,12 @@ class Controller
 
         $this->validator->setRules($rules, $messages);
     }
+
+    public function checkLogin()
+    {
+        if (session()->get('level_user') == 'Admin') {
+            return true;
+        }
+        return false;
+    }
 }
