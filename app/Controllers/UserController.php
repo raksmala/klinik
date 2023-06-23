@@ -26,7 +26,9 @@ class UserController extends Controller
         $isAdmin = $this->checkLogin();
         if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
         
-        echo view('user/create');
+        $notifikasiModel = new NotifikasiModel();
+        $data['notifikasi'] = $notifikasiModel->getData();
+        echo view('user/create', $data);
     }
 
     public function store()
