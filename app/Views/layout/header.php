@@ -74,7 +74,7 @@
                 </ul>
 
                 <div class="d-flex" role="login">
-                    <?php if (!empty(session()->logged_in)) { ?>
+                    <?php if (!empty(session()->logged_in) && session()->get('level_user') == 'Pelanggan') { ?>
                         <!-- <div class="alert alert-warning mr-2 align-items-center" role="alert">
                             <div class="alert-body d-flex align-items-center height-3">
                                 <i data-feather="info" class="me-20"></i>

@@ -81,7 +81,7 @@
             <div class="row detail-padding-price d-flex justify-content-center">
                 <div class="col-md-8 my-5 text-center">
                     <br><button type="button" class="btn btn-secondary" disabled>Rp. <?= number_format($detail->harga_treatment, 0, '', '.') ?></button>
-                    <?php if (!empty(session()->logged_in)) {
+                    <?php if (!empty(session()->logged_in) && session()->get('level_user') == 'Pelanggan') {
                         $detail_url = explode('(', $detail->nama_treatment)[0];
                         $detail_url = str_replace(' ', '-', trim($detail_url));
                     ?>
