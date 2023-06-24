@@ -36,8 +36,10 @@ class Treatment extends Controller
     {
         $isAdmin = $this->checkLogin();
         if(!$isAdmin) { return redirect()->to(base_url('layout/login')); }
+
+        $data['notifikasi'] = $this->notifikasiModel->getData();
         
-        echo view('adminTreatment/create');
+        echo view('adminTreatment/create', $data);
     }
 
     function simpan()

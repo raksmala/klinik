@@ -11,9 +11,6 @@
                         <p class="card-title">Data Reservasi</p>
                         <div class="col-auto">
                             <div class="row">
-                                <div class="col-12">
-                                    <a href="<?= base_url('user/create') ?>" class="bi bi-plus blue-color float-right"></a>
-                                </div>
                                 <div class="table-responsive">
                                     <table id="tablesiswa" class="display expandable-table" style="width:100%">
                                         <thead>

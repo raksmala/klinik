@@ -5,7 +5,7 @@
 <div class="container-fluid" id="container-wrapper">
   <div class="d-sm-flex align-items-center justify-content-between mb-0 mt-3">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/user">Kembali</a></li>
+      <li class="breadcrumb-item"><a href="/Admin/User">Kembali</a></li>
       <li class="breadcrumb-item active" aria-current="page">Tambah Data User</li>
     </ol>
   </div>
