@@ -62,9 +62,9 @@ class Reservasi extends Controller
         $status = $this->request->getPost('status_reservasi');
         $pesanStatus = '';
         if($status == 'Dalam Proses') {
-            $pesanStatus = 'dalam proses';
-        } else if($status == 'Proses') {
             $pesanStatus = 'diproses';
+        } else if($status == 'Proses') {
+            $pesanStatus = 'terkonfirmasi';
         } else if($status == 'Selesai') {
             $pesanStatus = 'selesai';
         } else if($status == 'Batal') {
@@ -82,7 +82,7 @@ class Reservasi extends Controller
         // convert ke unix timestamp
         $timestamp = $datetime->getTimestamp();
 
-        $message = "Halo " . $user['nama_lengkap'] . "! Reservasi treatment anda pada tanggal " . date('d-m-Y', strtotime($reservasi['tgl_reservasi'])) . " sesi " . $reservasi['sesi_reservasi'] . " telah terkonfirmasi. Silahkan datang 15 menit sebelum tindakan treatment dimulai, jika berhalangan hadir segera hubungi Admin. Terima kasih.\n- Adiva Beauty Skin -";
+        $message = "Halo " . $user['nama_lengkap'] . "! Reservasi treatment anda pada tanggal " . date('d-m-Y', strtotime($reservasi['tgl_reservasi'])) . " sesi " . $reservasi['sesi_reservasi'] . " telah " . $pesanStatus . ". Silahkan datang 15 menit sebelum tindakan treatment dimulai, jika berhalangan hadir segera hubungi Admin. Terima kasih.\n- Adiva Beauty Skin -";
         $send = $this->sendMessageModel->kirimPesan($user['nomor_telepon'], $message);
         $send = json_decode($send);
         $res_detail = $send->detail;
