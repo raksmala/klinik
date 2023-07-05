@@ -45,6 +45,11 @@ class ReservasiModel extends Model
         return $query->getResult();
     }
 
+    public function cekReservasi($id, $tanggal, $treatment) {
+        $query = $this->db->query("SELECT * FROM reservasi WHERE user_id = '$id' AND tgl_reservasi = '$tanggal' AND nama_treatment = '$treatment'");
+        return $query->getResult();
+    }
+
     public function getDataRange($tanggal_awal, $tanggal_akhir) {
         $query = $this->db->query("SELECT * FROM reservasi WHERE tgl_reservasi BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND is_deleted IS NULL");
         return $query->getResult();

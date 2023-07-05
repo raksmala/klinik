@@ -17,6 +17,18 @@
                 return false;
             }
 
+            var nomor_telepon = document.getElementById("nomor_telepon").value;
+
+            if (nomor_telepon.length < 10) {
+                alert("Nomor Telepon harus terdiri dari minimal 10 karakter!");
+                return false;
+            }
+
+            if (!nomor_telepon.match(/[0-9]/)) {
+                alert("Nomor Telepon harus terdiri dari ANGKA!");
+                return false;
+            }
+
             return true;
         }
     </script>

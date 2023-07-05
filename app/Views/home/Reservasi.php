@@ -84,7 +84,7 @@
 
 
             <div class="col-6">
-                <form method="post" action="<?= base_url('Reservasi/simpan') ?>">
+                <form method="post" action="<?= base_url('Reservasi/simpan') ?>" onsubmit="return checkSesi()">
                     <div class="flex flex-col p-5 bg-white shadow-lg relative max-w-[592px]">
                         <h2 class="text-xl md:text-4xl text-gray-800 mb-4">Reservasi</h2>
                         <hr style="border-color: black;">
@@ -95,6 +95,7 @@
                             </div>
                             <h6>Sesi Treatment</h6>
                             <p><small>(Pilih Salah Satu Sesi Treatment yang Masih Tersedia)</small></p>
+                            <p class="text-notif" style="display:none;"><small>Anda telah memiliki reservasi pada tanggal ini</small></p>
                             <div class="container">
                                 <?php
                                 $detail->sesi_treatment = json_decode($detail->sesi_treatment, true);
@@ -155,7 +156,7 @@
                             </div>
                         </div>
                         <a href="/home/Treatment/Facial" class="btn btn-secondary">Batal</a>
-                        <button type="submit" class="btn btn-primary">Kirim Reservasi</button>
+                        <button type="submit" class="btn btn-primary btn-submit">Kirim Reservasi</button>
                     </div>
                 </form>
             </div>
@@ -176,25 +177,46 @@
             },
             dataType: "JSON",
             success: function(data) {
-                const groupedData = data.reduce((acc, curr) => {
-                    const sesi = curr.sesi_reservasi;
-                    acc[sesi] = (acc[sesi] || 0) + 1;
-                    return acc;
-                }, {});
+                if(data.length == 0) {
+                    const groupedData = data.reduce((acc, curr) => {
+                        const sesi = curr.sesi_reservasi;
+                        acc[sesi] = (acc[sesi] || 0) + 1;
+                        return acc;
+                    }, {});
 
-                $('.js-checkbox').each(function() {
-                    const sesi = $(this).val();
+                    $('.js-checkbox').each(function() {
+                        const sesi = $(this).val();
+                        const sesiStart = sesi.substring(0, 5)
+                        const today = new Date();
+                        const time = today.getHours() + "." + today.getMinutes();
 
-                    if (groupedData[sesi] >= parseInt($(this).data('max'))) {
-                        $(this).parents('.custom-checkbox').addClass('is-max disabled');
+                        $(".text-notif").css("display", "none");
+                        if (groupedData[sesi] >= parseInt($(this).data('max'))) {
+                            $(this).parents('.custom-checkbox').addClass('is-max disabled');
+                            $(this).prop('disabled', true);
+                            $(this).next().addClass('disabled');
+                        } else {
+                            var currentTanggal = new Date(tanggal);
+                            currentTanggal = currentTanggal.getDate() + '/' + (currentTanggal.getMonth() + 1) + '/' + currentTanggal.getFullYear();
+                            if (currentTanggal === today.toLocaleDateString('id-ID') && parseFloat(sesiStart) < parseFloat(time)) {
+                                $(this).parents('.custom-checkbox').addClass('disabled');
+                                $(this).prop('disabled', true);
+                                $(this).next().addClass('disabled');
+                            } else {
+                                $(this).parents('.custom-checkbox').removeClass('disabled');
+                                $(this).prop('disabled', false);
+                                $(this).next().removeClass('disabled');
+                            }
+                        }
+                    });
+                } else {
+                    $('.js-checkbox').each(function() {
+                        $(this).parents('.custom-checkbox').addClass('disabled');
                         $(this).prop('disabled', true);
                         $(this).next().addClass('disabled');
-                    } else {
-                        $(this).parents('.custom-checkbox').removeClass('is-max disabled');
-                        $(this).prop('disabled', false);
-                        $(this).next().removeClass('disabled');
-                    }
-                });
+                        $(".text-notif").css("display", "block");
+                    });
+                }
             }
         });
     });
@@ -226,6 +248,22 @@
             });
         }
     });
+
+    function checkSesi() {
+        const checkboxes = document.querySelectorAll('.js-checkbox');
+        let checked = false;
+
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                checked = true;
+            }
+        });
+
+        if (!checked) {
+            alert('Pilih salah satu sesi terlebih dahulu');
+            return false;
+        }
+    }
 </script>
 
 </html>

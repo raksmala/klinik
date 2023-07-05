@@ -118,7 +118,7 @@ class Home extends BaseController
     public function notifikasi($id)
     {
         $this->notifikasiModel->read($id);
-        return redirect()->to('/Admin/Reservasi');
+        return redirect()->to('/Admin/Reservasi/edit/' . $id);
     }
 
     public function Dasboard()
@@ -171,8 +171,15 @@ class Home extends BaseController
         $tanggal = $this->request->getVar('tanggal');
         $treatment = $this->request->getVar('treatment');
 
-        $sesi = $this->reservasiModel->cekSesi($treatment, $tanggal);
-        return json_encode($sesi);
+        $id = session()->user_id;
+        $check = $this->reservasiModel->cekReservasi($id, $tanggal, $treatment);
+
+        if($check) {
+            return json_encode($check);
+        } else {
+            $sesi = $this->reservasiModel->cekSesi($treatment, $tanggal);
+            return json_encode($sesi);
+        }
     }
 
     public function export()
