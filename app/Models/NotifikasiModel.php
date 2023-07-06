@@ -27,4 +27,9 @@ class NotifikasiModel extends Model
         $query = $this->db->query("UPDATE notifikasi SET is_readed = '1' WHERE id_notifikasi = '$id_notifikasi'");
         return $query;
     }
+
+    public function getDataById($id_notifikasi) {
+        $query = $this->db->query("SELECT * FROM notifikasi JOIN reservasi ON notifikasi.id_reservasi = reservasi.id_reservasi WHERE notifikasi.id_notifikasi = '$id_notifikasi'");
+        return $query->getRowArray();
+    }
 }

@@ -142,8 +142,8 @@ class Home extends BaseController
 
     public function notifikasi($id)
     {
-        $this->notifikasiModel->read($id);
-        return redirect()->to('/Admin/Reservasi/edit/' . $id);
+        $notif = $this->notifikasiModel->getDataById($id);
+        return redirect()->to('/Admin/Reservasi/edit/' . $notif['id_reservasi']);
     }
 
     public function Dasboard()
