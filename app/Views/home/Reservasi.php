@@ -55,7 +55,13 @@
 <body>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/Detail/FacialBasic"><?= $detail->nama_treatment ?></a></li>
+            <?php
+                $url = str_replace(' ', '-', $detail->jenis_treatment);
+                $detail_url = explode('(', $detail->nama_treatment)[0];
+                $detail_url = str_replace(' ', '-', trim($detail_url));
+            ?>
+            <li class="breadcrumb-item"><a href="/home/Treatment/<?= $url ?>"><?= $detail->jenis_treatment ?></a></li>
+            <li class="breadcrumb-item"><a href="/home/Detail/<?= $detail_url ?>"><?= $detail->nama_treatment ?></a></li>
             <li class="breadcrumb-item active" aria-current="page">Reservasi</li>
         </ol>
     </nav>

@@ -28,6 +28,31 @@ class Home extends BaseController
         echo view('layout/footer');
     }
 
+    public function profile()
+    {
+        $dataHeader['jenis_treatment'] = $this->jenisTreatment;
+        $data['user'] = $this->userModel->getUserById(session()->user_id);
+        echo view('layout/header', $dataHeader);
+        echo view('home/user', $data);
+        echo view('layout/footer');
+    }
+
+    public function profileSimpan()
+    {
+        $dataHeader['jenis_treatment'] = $this->jenisTreatment;
+        $data['user'] = $this->userModel->getUserById(session()->user_id);
+        $data['user']['nama'] = $this->request->getPost('nama');
+        $data['user']['email'] = $this->request->getPost('email');
+        $data['user']['no_hp'] = $this->request->getPost('no_hp');
+        $data['user']['alamat'] = $this->request->getPost('alamat');
+        $data['user']['tgl_lahir'] = $this->request->getPost('tgl_lahir');
+        $data['user']['jenis_kelamin'] = $this->request->getPost('jenis_kelamin');
+        $data['user']['password'] = $this->request->getPost('password');
+        $data['user']['foto'] = $this->request->getPost('foto');
+        $this->userModel->save($data['user']);
+        return redirect()->to('/home/user/profile');
+    }
+
     public function klinik()
     {
         $dataHeader['jenis_treatment'] = $this->jenisTreatment;

@@ -6,6 +6,7 @@
     <script>
         function validatePassword() {
             var password = document.getElementById("password").value;
+            var passwordConfirm = document.getElementById("password-confirm").value;
 
             if (password.length < 8) {
                 alert("Password harus terdiri dari minimal 8 karakter!");
@@ -17,15 +18,26 @@
                 return false;
             }
 
-            var nomor_telepon = document.getElementById("nomor_telepon").value;
-
-            if (nomor_telepon.length < 10) {
-                alert("Nomor Telepon harus terdiri dari minimal 10 karakter!");
+            if (password != passwordConfirm) {
+                alert("Password dan Konfirmasi Password harus sama!");
                 return false;
             }
 
-            if (!nomor_telepon.match(/[0-9]/)) {
+            var nomor_telepon = document.getElementById("nomor_telepon").value;
+
+            // nomor_telepon should contains number only
+            if (nomor_telepon.match(/^[0-9]+$/) == null) {
                 alert("Nomor Telepon harus terdiri dari ANGKA!");
+                return false;
+            }
+
+            if (!nomor_telepon.match(/^(08|628)/)) {
+                alert("Nomor Telepon harus diawali dengan 08 atau 628!");
+                return false;
+            }
+
+            if (nomor_telepon.length < 10) {
+                alert("Nomor Telepon harus terdiri dari minimal 10 karakter!");
                 return false;
             }
 
@@ -35,6 +47,14 @@
 </head>
 
 <body>
+    <style>
+        .password-toggle,
+        .password-confirm-toggle {
+            cursor: pointer;
+            color: #000;
+            font-size: 12px;
+        }
+    </style>
     <section class="vh-300 bg-image" style="background-image: url('https://www.seekpng.com/png/full/6-64122_png-pictures.png');">
         <div class="mask d-flex align-items-center h-100 gradient-custom-3">
             <div class="container h-100 my-5">
@@ -59,7 +79,18 @@
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="password">Password</label>
-                                        <input type="password" id="password" class="form-control" minlength="8" placeholder="Password" name="password" autofokus required oninvalid="this.setCustomValidity('Password Minimal 8 Karakter')" oninput="this.setCustomValidity('Password Minimal 8 Karakter')" onchange="this.setCustomValidity('')" />
+                                        <div class="password-wrapper">
+                                            <input type="password" id="password" class="form-control" placeholder="Password" name="password" autofocus required onchange="this.setCustomValidity('')" />
+                                            <span class="password-toggle" onclick="togglePasswordVisibility()">Lihat Password</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="password">Konfirmasi Password</label>
+                                        <div class="password-wrapper">
+                                            <input type="password" id="password-confirm" class="form-control"placeholder="Konfirmasi Password" name="password-confirm" autofocus required onchange="this.setCustomValidity('')" />
+                                            <span class="password-confirm-toggle" onclick="togglePasswordConfirmVisibility()">Lihat Password</span>
+                                        </div>
                                     </div>
 
                                     <div class="form-outline mb-4">
@@ -91,5 +122,32 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="app/public/assets/js/script.js"></script>
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password");
+        var passwordToggle = document.querySelector(".password-toggle");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            passwordToggle.innerHTML = "Sembunyikan Password";
+        } else {
+            passwordInput.type = "password";
+            passwordToggle.innerHTML = "Lihat Password";
+        }
+    }
+
+    function togglePasswordConfirmVisibility() {
+        var passwordConfirmInput = document.getElementById("password-confirm");
+        var passwordConfirmToggle = document.querySelector(".password-confirm-toggle");
+
+        if (passwordConfirmInput.type === "password") {
+            passwordConfirmInput.type = "text";
+            passwordConfirmToggle.innerHTML = "Sembunyikan Password";
+        } else {
+            passwordConfirmInput.type = "password";
+            passwordConfirmToggle.innerHTML = "Lihat Password";
+        }
+    }
+</script>
 
 </html>

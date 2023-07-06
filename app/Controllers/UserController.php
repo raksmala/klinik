@@ -76,6 +76,36 @@ class UserController extends Controller
         return redirect()->to(base_url('/Admin/User'));
     }
 
+    public function updateProfile($id)
+    {
+        $model = new UserModel();
+        
+        $user = $model->find($id);
+
+        $user['nama_lengkap'] = $this->request->getVar('nama_lengkap');
+        $user['username'] = $this->request->getVar('username');
+        $user['alamat'] = $this->request->getVar('alamat');
+        $user['nomor_telepon'] = $this->request->getVar('nomor_telepon');
+
+        if($this->request->getVar('password') != null) {
+            $user['password'] = md5($this->request->getVar('password'));
+        }
+
+        $model->save($user);
+
+        $data = [
+            'user_id' => session()->get('user_id'),
+            'nama_lengkap'    => $user['nama_lengkap'],
+            'username' => $user['username'],
+            'nomor telepon' => $user['nomor_telepon'],
+            'alamat' => $user['alamat'],
+            'logged_in' => TRUE,
+        ];
+        session()->set($data);
+
+        return redirect()->to(base_url('/home/user/profile'));
+    }
+
     public function delete($id)
     {
         $model = new UserModel();

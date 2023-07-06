@@ -32,6 +32,8 @@ $routes->setAutoRoute(false);
 $routes->get('/', 'Home::index');
 $routes->get('/logout', 'Login::logout');
 $routes->get('/reservasi', 'Login::reservasi');
+$routes->get('/home/user/profile', 'Home::profile');
+$routes->post('/home/user/profile/simpan/(:num)', 'UserController::updateProfile/$1');
 $routes->get('/home/klinik', 'Home::klinik');
 $routes->get('/home/Treatment/(:any)', 'Home::Treatment/$1');
 $routes->get('/home/Detail/(:any)', 'Home::Detail/$1');

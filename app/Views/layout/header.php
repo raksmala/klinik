@@ -53,13 +53,13 @@
                         </a>
                         <ul class="dropdown-menu">
                             <?php
-                                if(isset($jenis_treatment)) {
-                                    foreach($jenis_treatment as $row) {
-                                        // replace space with dash (-)
-                                        $url = str_replace(' ', '-', $row);
-                                        echo '<li><a class="dropdown-item" href="/home/Treatment/'.$url.'">'.$row.'</a></li>';
-                                    }
+                            if (isset($jenis_treatment)) {
+                                foreach ($jenis_treatment as $row) {
+                                    // replace space with dash (-)
+                                    $url = str_replace(' ', '-', $row);
+                                    echo '<li><a class="dropdown-item" href="/home/Treatment/' . $url . '">' . $row . '</a></li>';
                                 }
+                            }
                             ?>
                         </ul>
                     </li>
@@ -84,9 +84,9 @@
                         <br>
                         <!-- Button trigger modal -->
                         <div class="d-grid gap-2 d-md-block">
-                        <button type="button" class="btn btn-outline-dark" disabled>
+                            <a href="/home/user/profile" class="btn btn-outline-dark" disabled>
                                 <span><?= session()->get('pesan') ?></span>
-                            </button>
+                            </a>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Logout
                             </button>
