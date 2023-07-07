@@ -97,7 +97,7 @@ class UserController extends Controller
             'user_id' => session()->get('user_id'),
             'nama_lengkap'    => $user['nama_lengkap'],
             'username' => $user['username'],
-            'nomor telepon' => $user['nomor_telepon'],
+            'nomor_telepon' => $user['nomor_telepon'],
             'alamat' => $user['alamat'],
             'logged_in' => TRUE,
         ];
